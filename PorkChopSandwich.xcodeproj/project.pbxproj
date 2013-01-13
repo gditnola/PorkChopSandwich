@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D8A10D8C16A3585600E1E121 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10D8B16A3585600E1E121 /* UIKit.framework */; };
+		D8A10D8E16A3585600E1E121 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10D8D16A3585600E1E121 /* Foundation.framework */; };
+		D8A10D9016A3585600E1E121 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10D8F16A3585600E1E121 /* CoreGraphics.framework */; };
+		D8A10D9616A3585600E1E121 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8A10D9416A3585600E1E121 /* InfoPlist.strings */; };
+		D8A10D9816A3585600E1E121 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10D9716A3585600E1E121 /* main.m */; };
+		D8A10D9C16A3585600E1E121 /* PorkChopSandwichAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10D9B16A3585600E1E121 /* PorkChopSandwichAppDelegate.m */; };
+		D8A10D9E16A3585600E1E121 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A10D9D16A3585600E1E121 /* Default.png */; };
+		D8A10DA016A3585600E1E121 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A10D9F16A3585600E1E121 /* Default@2x.png */; };
+		D8A10DA216A3585600E1E121 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8A10DA116A3585600E1E121 /* Default-568h@2x.png */; };
+		D8A10DA516A3585600E1E121 /* PorkChopSandwichViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10DA416A3585600E1E121 /* PorkChopSandwichViewController.m */; };
+		D8A10DA816A3585600E1E121 /* PorkChopSandwichViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8A10DA616A3585600E1E121 /* PorkChopSandwichViewController.xib */; };
+		D8A10DB016A3585600E1E121 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DAF16A3585600E1E121 /* SenTestingKit.framework */; };
+		D8A10DB116A3585600E1E121 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10D8B16A3585600E1E121 /* UIKit.framework */; };
+		D8A10DB216A3585600E1E121 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10D8D16A3585600E1E121 /* Foundation.framework */; };
+		D8A10DBA16A3585600E1E121 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8A10DB816A3585600E1E121 /* InfoPlist.strings */; };
+		D8A10DBD16A3585600E1E121 /* PorkChopSandwichTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10DBC16A3585600E1E121 /* PorkChopSandwichTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D8A10DB316A3585600E1E121 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8A10D7E16A3585600E1E121 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8A10D8616A3585600E1E121;
+			remoteInfo = PorkChopSandwich;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D8A10D8716A3585600E1E121 /* PorkChopSandwich.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PorkChopSandwich.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8A10D8B16A3585600E1E121 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D8A10D8D16A3585600E1E121 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D8A10D8F16A3585600E1E121 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D8A10D9316A3585600E1E121 /* PorkChopSandwich-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PorkChopSandwich-Info.plist"; sourceTree = "<group>"; };
+		D8A10D9516A3585600E1E121 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D8A10D9716A3585600E1E121 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D8A10D9916A3585600E1E121 /* PorkChopSandwich-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PorkChopSandwich-Prefix.pch"; sourceTree = "<group>"; };
+		D8A10D9A16A3585600E1E121 /* PorkChopSandwichAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PorkChopSandwichAppDelegate.h; sourceTree = "<group>"; };
+		D8A10D9B16A3585600E1E121 /* PorkChopSandwichAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PorkChopSandwichAppDelegate.m; sourceTree = "<group>"; };
+		D8A10D9D16A3585600E1E121 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D8A10D9F16A3585600E1E121 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		D8A10DA116A3585600E1E121 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D8A10DA316A3585600E1E121 /* PorkChopSandwichViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PorkChopSandwichViewController.h; sourceTree = "<group>"; };
+		D8A10DA416A3585600E1E121 /* PorkChopSandwichViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PorkChopSandwichViewController.m; sourceTree = "<group>"; };
+		D8A10DA716A3585600E1E121 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PorkChopSandwichViewController.xib; sourceTree = "<group>"; };
+		D8A10DAE16A3585600E1E121 /* PorkChopSandwichTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PorkChopSandwichTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8A10DAF16A3585600E1E121 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D8A10DB716A3585600E1E121 /* PorkChopSandwichTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PorkChopSandwichTests-Info.plist"; sourceTree = "<group>"; };
+		D8A10DB916A3585600E1E121 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D8A10DBB16A3585600E1E121 /* PorkChopSandwichTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PorkChopSandwichTests.h; sourceTree = "<group>"; };
+		D8A10DBC16A3585600E1E121 /* PorkChopSandwichTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PorkChopSandwichTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D8A10D8416A3585600E1E121 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8A10D8C16A3585600E1E121 /* UIKit.framework in Frameworks */,
+				D8A10D8E16A3585600E1E121 /* Foundation.framework in Frameworks */,
+				D8A10D9016A3585600E1E121 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8A10DAA16A3585600E1E121 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8A10DB016A3585600E1E121 /* SenTestingKit.framework in Frameworks */,
+				D8A10DB116A3585600E1E121 /* UIKit.framework in Frameworks */,
+				D8A10DB216A3585600E1E121 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D8A10D7C16A3585600E1E121 = {
+			isa = PBXGroup;
+			children = (
+				D8A10D9116A3585600E1E121 /* PorkChopSandwich */,
+				D8A10DB516A3585600E1E121 /* PorkChopSandwichTests */,
+				D8A10D8A16A3585600E1E121 /* Frameworks */,
+				D8A10D8816A3585600E1E121 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D8A10D8816A3585600E1E121 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D8A10D8716A3585600E1E121 /* PorkChopSandwich.app */,
+				D8A10DAE16A3585600E1E121 /* PorkChopSandwichTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D8A10D8A16A3585600E1E121 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D8A10D8B16A3585600E1E121 /* UIKit.framework */,
+				D8A10D8D16A3585600E1E121 /* Foundation.framework */,
+				D8A10D8F16A3585600E1E121 /* CoreGraphics.framework */,
+				D8A10DAF16A3585600E1E121 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D8A10D9116A3585600E1E121 /* PorkChopSandwich */ = {
+			isa = PBXGroup;
+			children = (
+				D8A10D9A16A3585600E1E121 /* PorkChopSandwichAppDelegate.h */,
+				D8A10D9B16A3585600E1E121 /* PorkChopSandwichAppDelegate.m */,
+				D8A10DA316A3585600E1E121 /* PorkChopSandwichViewController.h */,
+				D8A10DA416A3585600E1E121 /* PorkChopSandwichViewController.m */,
+				D8A10DA616A3585600E1E121 /* PorkChopSandwichViewController.xib */,
+				D8A10D9216A3585600E1E121 /* Supporting Files */,
+			);
+			path = PorkChopSandwich;
+			sourceTree = "<group>";
+		};
+		D8A10D9216A3585600E1E121 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D8A10D9316A3585600E1E121 /* PorkChopSandwich-Info.plist */,
+				D8A10D9416A3585600E1E121 /* InfoPlist.strings */,
+				D8A10D9716A3585600E1E121 /* main.m */,
+				D8A10D9916A3585600E1E121 /* PorkChopSandwich-Prefix.pch */,
+				D8A10D9D16A3585600E1E121 /* Default.png */,
+				D8A10D9F16A3585600E1E121 /* Default@2x.png */,
+				D8A10DA116A3585600E1E121 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D8A10DB516A3585600E1E121 /* PorkChopSandwichTests */ = {
+			isa = PBXGroup;
+			children = (
+				D8A10DBB16A3585600E1E121 /* PorkChopSandwichTests.h */,
+				D8A10DBC16A3585600E1E121 /* PorkChopSandwichTests.m */,
+				D8A10DB616A3585600E1E121 /* Supporting Files */,
+			);
+			path = PorkChopSandwichTests;
+			sourceTree = "<group>";
+		};
+		D8A10DB616A3585600E1E121 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D8A10DB716A3585600E1E121 /* PorkChopSandwichTests-Info.plist */,
+				D8A10DB816A3585600E1E121 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D8A10D8616A3585600E1E121 /* PorkChopSandwich */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8A10DC016A3585600E1E121 /* Build configuration list for PBXNativeTarget "PorkChopSandwich" */;
+			buildPhases = (
+				D8A10D8316A3585600E1E121 /* Sources */,
+				D8A10D8416A3585600E1E121 /* Frameworks */,
+				D8A10D8516A3585600E1E121 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PorkChopSandwich;
+			productName = PorkChopSandwich;
+			productReference = D8A10D8716A3585600E1E121 /* PorkChopSandwich.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D8A10DAD16A3585600E1E121 /* PorkChopSandwichTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8A10DC316A3585600E1E121 /* Build configuration list for PBXNativeTarget "PorkChopSandwichTests" */;
+			buildPhases = (
+				D8A10DA916A3585600E1E121 /* Sources */,
+				D8A10DAA16A3585600E1E121 /* Frameworks */,
+				D8A10DAB16A3585600E1E121 /* Resources */,
+				D8A10DAC16A3585600E1E121 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D8A10DB416A3585600E1E121 /* PBXTargetDependency */,
+			);
+			name = PorkChopSandwichTests;
+			productName = PorkChopSandwichTests;
+			productReference = D8A10DAE16A3585600E1E121 /* PorkChopSandwichTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D8A10D7E16A3585600E1E121 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PorkChopSandwich;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = GDIT;
+			};
+			buildConfigurationList = D8A10D8116A3585600E1E121 /* Build configuration list for PBXProject "PorkChopSandwich" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D8A10D7C16A3585600E1E121;
+			productRefGroup = D8A10D8816A3585600E1E121 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D8A10D8616A3585600E1E121 /* PorkChopSandwich */,
+				D8A10DAD16A3585600E1E121 /* PorkChopSandwichTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D8A10D8516A3585600E1E121 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8A10D9616A3585600E1E121 /* InfoPlist.strings in Resources */,
+				D8A10D9E16A3585600E1E121 /* Default.png in Resources */,
+				D8A10DA016A3585600E1E121 /* Default@2x.png in Resources */,
+				D8A10DA216A3585600E1E121 /* Default-568h@2x.png in Resources */,
+				D8A10DA816A3585600E1E121 /* PorkChopSandwichViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8A10DAB16A3585600E1E121 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8A10DBA16A3585600E1E121 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D8A10DAC16A3585600E1E121 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D8A10D8316A3585600E1E121 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8A10D9816A3585600E1E121 /* main.m in Sources */,
+				D8A10D9C16A3585600E1E121 /* PorkChopSandwichAppDelegate.m in Sources */,
+				D8A10DA516A3585600E1E121 /* PorkChopSandwichViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8A10DA916A3585600E1E121 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8A10DBD16A3585600E1E121 /* PorkChopSandwichTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D8A10DB416A3585600E1E121 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D8A10D8616A3585600E1E121 /* PorkChopSandwich */;
+			targetProxy = D8A10DB316A3585600E1E121 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D8A10D9416A3585600E1E121 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8A10D9516A3585600E1E121 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D8A10DA616A3585600E1E121 /* PorkChopSandwichViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8A10DA716A3585600E1E121 /* en */,
+			);
+			name = PorkChopSandwichViewController.xib;
+			sourceTree = "<group>";
+		};
+		D8A10DB816A3585600E1E121 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8A10DB916A3585600E1E121 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D8A10DBE16A3585600E1E121 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		D8A10DBF16A3585600E1E121 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D8A10DC116A3585600E1E121 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PorkChopSandwich/PorkChopSandwich-Prefix.pch";
+				INFOPLIST_FILE = "PorkChopSandwich/PorkChopSandwich-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D8A10DC216A3585600E1E121 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PorkChopSandwich/PorkChopSandwich-Prefix.pch";
+				INFOPLIST_FILE = "PorkChopSandwich/PorkChopSandwich-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D8A10DC416A3585600E1E121 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PorkChopSandwich.app/PorkChopSandwich";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PorkChopSandwich/PorkChopSandwich-Prefix.pch";
+				INFOPLIST_FILE = "PorkChopSandwichTests/PorkChopSandwichTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		D8A10DC516A3585600E1E121 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PorkChopSandwich.app/PorkChopSandwich";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PorkChopSandwich/PorkChopSandwich-Prefix.pch";
+				INFOPLIST_FILE = "PorkChopSandwichTests/PorkChopSandwichTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D8A10D8116A3585600E1E121 /* Build configuration list for PBXProject "PorkChopSandwich" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8A10DBE16A3585600E1E121 /* Debug */,
+				D8A10DBF16A3585600E1E121 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8A10DC016A3585600E1E121 /* Build configuration list for PBXNativeTarget "PorkChopSandwich" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8A10DC116A3585600E1E121 /* Debug */,
+				D8A10DC216A3585600E1E121 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D8A10DC316A3585600E1E121 /* Build configuration list for PBXNativeTarget "PorkChopSandwichTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8A10DC416A3585600E1E121 /* Debug */,
+				D8A10DC516A3585600E1E121 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D8A10D7E16A3585600E1E121 /* Project object */;
+}
