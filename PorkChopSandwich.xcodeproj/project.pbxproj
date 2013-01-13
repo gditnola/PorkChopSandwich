@@ -23,6 +23,16 @@
 		D8A10DB216A3585600E1E121 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10D8D16A3585600E1E121 /* Foundation.framework */; };
 		D8A10DBA16A3585600E1E121 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8A10DB816A3585600E1E121 /* InfoPlist.strings */; };
 		D8A10DBD16A3585600E1E121 /* PorkChopSandwichTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10DBC16A3585600E1E121 /* PorkChopSandwichTests.m */; };
+		D8A10DC716A3589E00E1E121 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DC616A3589E00E1E121 /* CoreLocation.framework */; };
+		D8A10DC916A358AA00E1E121 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DC816A358AA00E1E121 /* CoreText.framework */; };
+		D8A10DCD16A358F000E1E121 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DCC16A358F000E1E121 /* libz.dylib */; };
+		D8A10DCF16A358FE00E1E121 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DCE16A358FE00E1E121 /* QuartzCore.framework */; };
+		D8A10DD116A3590D00E1E121 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DD016A3590D00E1E121 /* MediaPlayer.framework */; };
+		D8A10DD316A3591B00E1E121 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DD216A3591B00E1E121 /* MobileCoreServices.framework */; };
+		D8A10DD516A3592900E1E121 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DD416A3592900E1E121 /* OpenGLES.framework */; };
+		D8A10DD716A3593800E1E121 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DD616A3593800E1E121 /* Security.framework */; };
+		D8A10DD916A3598600E1E121 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D8A10DD816A3598600E1E121 /* ArcGIS.bundle */; };
+		D8A10DDB16A35BA200E1E121 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DDA16A35BA200E1E121 /* libstdc++.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +68,17 @@
 		D8A10DB916A3585600E1E121 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8A10DBB16A3585600E1E121 /* PorkChopSandwichTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PorkChopSandwichTests.h; sourceTree = "<group>"; };
 		D8A10DBC16A3585600E1E121 /* PorkChopSandwichTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PorkChopSandwichTests.m; sourceTree = "<group>"; };
+		D8A10DC616A3589E00E1E121 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D8A10DC816A358AA00E1E121 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		D8A10DCA16A358E600E1E121 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		D8A10DCC16A358F000E1E121 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D8A10DCE16A358FE00E1E121 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D8A10DD016A3590D00E1E121 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		D8A10DD216A3591B00E1E121 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D8A10DD416A3592900E1E121 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D8A10DD616A3593800E1E121 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D8A10DD816A3598600E1E121 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../Library/SDKs/ArcGIS/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
+		D8A10DDA16A35BA200E1E121 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +86,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8A10DDB16A35BA200E1E121 /* libstdc++.dylib in Frameworks */,
 				D8A10D8C16A3585600E1E121 /* UIKit.framework in Frameworks */,
+				D8A10DD716A3593800E1E121 /* Security.framework in Frameworks */,
+				D8A10DD516A3592900E1E121 /* OpenGLES.framework in Frameworks */,
+				D8A10DD316A3591B00E1E121 /* MobileCoreServices.framework in Frameworks */,
+				D8A10DD116A3590D00E1E121 /* MediaPlayer.framework in Frameworks */,
+				D8A10DCF16A358FE00E1E121 /* QuartzCore.framework in Frameworks */,
+				D8A10DCD16A358F000E1E121 /* libz.dylib in Frameworks */,
+				D8A10DC916A358AA00E1E121 /* CoreText.framework in Frameworks */,
+				D8A10DC716A3589E00E1E121 /* CoreLocation.framework in Frameworks */,
 				D8A10D8E16A3585600E1E121 /* Foundation.framework in Frameworks */,
 				D8A10D9016A3585600E1E121 /* CoreGraphics.framework in Frameworks */,
 			);
@@ -87,6 +117,17 @@
 		D8A10D7C16A3585600E1E121 = {
 			isa = PBXGroup;
 			children = (
+				D8A10DDA16A35BA200E1E121 /* libstdc++.dylib */,
+				D8A10DD816A3598600E1E121 /* ArcGIS.bundle */,
+				D8A10DD616A3593800E1E121 /* Security.framework */,
+				D8A10DD416A3592900E1E121 /* OpenGLES.framework */,
+				D8A10DD216A3591B00E1E121 /* MobileCoreServices.framework */,
+				D8A10DD016A3590D00E1E121 /* MediaPlayer.framework */,
+				D8A10DCE16A358FE00E1E121 /* QuartzCore.framework */,
+				D8A10DCC16A358F000E1E121 /* libz.dylib */,
+				D8A10DCA16A358E600E1E121 /* libc++.dylib */,
+				D8A10DC816A358AA00E1E121 /* CoreText.framework */,
+				D8A10DC616A3589E00E1E121 /* CoreLocation.framework */,
 				D8A10D9116A3585600E1E121 /* PorkChopSandwich */,
 				D8A10DB516A3585600E1E121 /* PorkChopSandwichTests */,
 				D8A10D8A16A3585600E1E121 /* Frameworks */,
@@ -237,6 +278,7 @@
 				D8A10DA016A3585600E1E121 /* Default@2x.png in Resources */,
 				D8A10DA216A3585600E1E121 /* Default-568h@2x.png in Resources */,
 				D8A10DA816A3585600E1E121 /* PorkChopSandwichViewController.xib in Resources */,
+				D8A10DD916A3598600E1E121 /* ArcGIS.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,9 +420,17 @@
 		D8A10DC116A3585600E1E121 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "${HOME}/Library/SDKs/**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PorkChopSandwich/PorkChopSandwich-Prefix.pch";
 				INFOPLIST_FILE = "PorkChopSandwich/PorkChopSandwich-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+					"-framework",
+					ArcGIS,
+					"-lstdc++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -389,9 +439,17 @@
 		D8A10DC216A3585600E1E121 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "${HOME}/Library/SDKs/**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PorkChopSandwich/PorkChopSandwich-Prefix.pch";
 				INFOPLIST_FILE = "PorkChopSandwich/PorkChopSandwich-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+					"-framework",
+					ArcGIS,
+					"-lstdc++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

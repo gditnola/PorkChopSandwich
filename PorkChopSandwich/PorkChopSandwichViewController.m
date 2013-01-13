@@ -17,8 +17,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
+	AGSTiledMapServiceLayer *tiledLayer =
+    [AGSTiledMapServiceLayer
+     tiledMapServiceLayerWithURL:[NSURL URLWithString:@"http://server.arcgisonline.com/ArcGIS/rest/services/ESRI_StreetMap_World_2D/MapServer"]];
+    [self.mapView addMapLayer:tiledLayer withName:@"Tiled Layer"];}
 
 - (void)didReceiveMemoryWarning
 {
