@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <ArcGIS/ArcGIS.h>
 
-@interface PorkChopSandwichViewController : UIViewController
+@interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate>
 @property (weak, nonatomic) IBOutlet AGSMapView *mapView;
 
 @end

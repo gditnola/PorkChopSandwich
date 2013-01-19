@@ -7,8 +7,11 @@
 //
 
 #import "PorkChopSandwichViewController.h"
+#import "PorkChopSandwichAppDelegate.h"
 
 @interface PorkChopSandwichViewController ()
+
+@property (nonatomic, strong) AGSWebMap *webMap;
 
 @end
 
@@ -17,8 +20,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self loadMap];
+    NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
+    [self loadWebMap];
+    //[self loadMap];
 
+}
+
+-(void)loadWebMap {
+    NSLog(@"PorkChopSandwichViewController.loadWebMap()");
+    self.webMap = [AGSWebMap webMapWithItemId:@"21aef546308844d0b3bfd71782842772" credential:nil];
+    self.webMap.delegate = self;
+    [self.webMap openIntoMapView:self.mapView];
 }
 
 /*
@@ -62,6 +74,38 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//delegate methods
+- (void) webMapDidLoad:(AGSWebMap*) webMap {
+    //webmap data was retrieved successfully
+    NSLog(@"webMap was retrieved successfully.");
+}
+
+- (void) webMap:(AGSWebMap *)webMap didFailToLoadWithError:(NSError *)error {
+    //webmap data was not retrieved
+    //alert the user
+    NSLog(@"Error while loading webmap: %@",[error localizedDescription]);
+}
+
+-(void)didOpenWebMap:(AGSWebMap*)webMap intoMapView:(AGSMapView*)mapView{
+   	//web map finished opening
+     NSLog(@"webMap finished opening.");
+}
+
+-(void)webMap:(AGSWebMap*)wm didLoadLayer:(AGSLayer*)layer{
+    //layer in web map loaded properly
+     NSLog(@"webMap loaded layer: %@", [layer name]);
+}
+
+-(void)webMap:(AGSWebMap*)wm didFailToLoadLayer:(NSString*)layerTitle url:(NSURL*)url baseLayer:(BOOL)baseLayer federated:(BOOL)federated withError:(NSError*)error{
+    NSLog(@"Error while loading layer: %@",[error localizedDescription]);
+    
+    //you can skip loading this layer
+    //[self.webMap continueOpenAndSkipCurrentLayer];
+    
+    //or you can try loading it with proper credentials if the error was security related
+    //[self.webMap continueOpenWithCredential:credential];
 }
 
 @end
