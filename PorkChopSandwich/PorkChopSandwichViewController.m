@@ -11,14 +11,13 @@
 
 @interface PorkChopSandwichViewController ()
 
-@property (nonatomic, strong) AGSWebMap *webMap;
-
 @end
 
 @implementation PorkChopSandwichViewController
 
 - (void)viewDidLoad
 {
+    [self setupRoute];
     [super viewDidLoad];
     NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
     [self loadWebMap];
@@ -26,11 +25,64 @@
 
 }
 
+
+
+
 -(void)loadWebMap {
     NSLog(@"PorkChopSandwichViewController.loadWebMap()");
     self.webMap = [AGSWebMap webMapWithItemId:@"21aef546308844d0b3bfd71782842772" credential:nil];
     self.webMap.delegate = self;
     [self.webMap openIntoMapView:self.mapView];
+}
+
+-(void)unselectLayer {
+    NSLog(@"unselectLayer()");
+    //AGSWebMapBaseMap *baseMap = self.webMap.baseMap;
+    //NSLog(@"Layer Count: %u",baseMap.baseMapLayers.count);
+
+//    for(int i=0; i<baseMap.baseMapLayers.count; i++) {
+//        NSLog(@"Layer: %@",baseMap.baseMapLayers[i]);
+//    }
+    
+    
+    //id protraction;
+/*    AGSWebMapLayerInfo *layerInfo = (AGSWebMapLayerInfo *)baseMap.baseMapLayers[0];
+    NSLog(@"Testing layerInfo...");
+    const char* className = class_getName([layerInfo class]);
+    NSLog(@"yourObject is a: %s", className);
+    NSLog(@"layerInfo.layerId: %@", [layerInfo layerId]);
+    if(layerInfo == nil) {
+        NSLog(@"layerInfo is nil");
+    }
+    else {
+        NSLog(@"layerInfo is not nil");
+    }
+    
+    if(layerInfo.layers == nil) {
+        NSLog(@"layerInfo.layers is nil");
+    }
+    else {
+        NSLog(@"layerInfo.layers is not nil");
+    }
+    NSLog(@"BaseMap layer count: %u", layerInfo.layers.count);
+ */
+ /*   AGSWebMapLayerInfo *protractionsLayer;
+    NSLog(@"operationalLayers.count = %u", self.webMap.operationalLayers.count);
+    for(int i=0; i<self.webMap.operationalLayers.count; i++) {
+        AGSWebMapLayerInfo *layerInfo = (AGSWebMapLayerInfo *)self.webMap.operationalLayers[i];
+        NSString *layerTitle = layerInfo.title;
+        NSLog(@"Layer: %@",layerTitle);
+
+        if([layerTitle isEqualToString:@"Protractions"]) {
+            NSLog(@"Found Protractions Layer");
+            protractionsLayer = layerInfo;
+        }
+    }
+    
+    NSLog(@"Deleting protractions from array");
+   // protractionsLayer.visibility = false;
+  */
+  
 }
 
 /*
@@ -90,6 +142,9 @@
 
 -(void)didOpenWebMap:(AGSWebMap*)webMap intoMapView:(AGSMapView*)mapView{
    	//web map finished opening
+    //cbm debug.. remove  below code
+    [self unselectLayer];
+    //cbm debug.. remove above code
      NSLog(@"webMap finished opening.");
 }
 
@@ -108,4 +163,116 @@
     //[self.webMap continueOpenWithCredential:credential];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+}
+
+
+//begin TableView methods
+-(void)setupRoute {
+    /*
+     //this will setup grouped tableview
+     NSArray *monday = [[NSArray alloc]
+                       initWithObjects:@"Stop 1",@"Stop 2",@"Stop3",nil];
+    NSArray *tuesday = [[NSArray alloc]
+                        initWithObjects:@"Stop 1",@"Stop 2",@"Stop3",nil];
+    NSArray *wednesday = [[NSArray alloc]
+                          initWithObjects:@"Stop 1",@"Stop 2",@"Stop3",nil];
+    NSArray *thursday = [[NSArray alloc]
+                         initWithObjects:@"Stop 1",@"Stop 2",@"Stop3",nil];
+    NSArray *friday = [[NSArray alloc]
+                       initWithObjects:@"Stop 1",@"Stop 2",@"Stop3",nil];
+    
+    self.daysOfWeek = [[NSDictionary alloc]
+                       initWithObjectsAndKeys:monday,@"Monday",tuesday,
+                       @"Tuesday",wednesday,@"Wednesday",thursday,@"Thursday",
+                       friday,@"Friday",nil];
+    
+    self.routes =[[self.daysOfWeek allKeys]
+                  sortedArrayUsingSelector:@selector(compare:)];
+     */
+    
+    self.route = [[NSArray alloc]
+                  initWithObjects:@"Stop 1",@"Stop 2",@"Stop 3",@"Stop 4",@"Stop 5",@"Stop 6",@"Stop 7",@"Stop 8",
+                  @"Stop 9",@"Stop 10",nil];;
+    
+}
+
+#pragma mark Table Methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    //return [self.route count];
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section
+{
+    //return [self.route objectAtIndex:section];
+    return @"Today's Inspections";
+}
+
+- (NSInteger)tableView:(UITableView *)table
+ numberOfRowsInSection:(NSInteger)section {
+   //grouped
+    // NSArray *listData =[self.daysOfWeek objectForKey:
+   //                     [self.routes objectAtIndex:section]];
+   // return [listData count];
+    return [self.route count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
+    
+    //NSArray *listData =[self.daysOfWeek objectForKey:
+    //                    [self.routes objectAtIndex:[indexPath section]]];
+    
+    UITableViewCell * cell = [tableView
+                              dequeueReusableCellWithIdentifier: SimpleTableIdentifier];
+    
+    if(cell == nil) {
+        
+        cell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:SimpleTableIdentifier];
+        
+        /*cell = [[[UITableViewCell alloc]
+         initWithStyle:UITableViewCellStyleSubtitle
+         reuseIdentifier:SimpleTableIdentifier] autorelease];
+         */
+    }
+    
+    NSUInteger row = [indexPath row];
+    //grouped
+    //cell.textLabel.text = [listData objectAtIndex:row];
+    cell.textLabel.text = [self.route objectAtIndex:row];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //grouped
+    //NSArray *listData =[self.daysOfWeek objectForKey:
+    //                    [self.routes objectAtIndex:[indexPath section]]];
+    NSUInteger row = [indexPath row];
+    
+    //grouped
+    //NSString *rowValue = [listData objectAtIndex:row];
+    
+    NSString *rowValue = [self.route objectAtIndex:row];
+    
+    NSString *message = [[NSString alloc] initWithFormat:rowValue];
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"You selected"
+                          message:message delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+//end TableView methods
 @end

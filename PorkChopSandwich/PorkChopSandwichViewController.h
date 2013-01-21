@@ -11,5 +11,10 @@
 
 @interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate>
 @property (weak, nonatomic) IBOutlet AGSMapView *mapView;
+@property (nonatomic, strong) AGSWebMap *webMap;
+
+//route tableview
+//@property (nonatomic,retain) NSDictionary *daysOfWeek;
+@property (nonatomic,retain) NSArray *route;
 
 @end
