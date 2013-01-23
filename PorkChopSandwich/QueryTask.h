@@ -16,6 +16,8 @@
 @interface QueryTask : NSObject <AGSQueryTaskDelegate>
 
 @property (nonatomic, strong) AGSFeatureSet *featureSet;
+@property (nonatomic,retain) AGSQueryTask *queryTask;
+@property (nonatomic,retain) AGSQuery *query;
 
 -(void)getActivePlatforms;
 -(void)getProtractions;

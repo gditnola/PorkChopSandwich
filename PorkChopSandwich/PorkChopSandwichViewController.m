@@ -21,19 +21,7 @@
     [self setupRoute];
     [super viewDidLoad];
     NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
-    
- //   NSString *protractionsURL = @"http://services.arcgis.com/CZNThfVV3neRiGdR/arcgis/rest/services/Protractions/FeatureServer/0";
-	
-	//set up query task against layer, specify the delegate
-	self.queryTask = [AGSQueryTask queryTaskWithURL:[NSURL URLWithString:@"http://services.arcgis.com/CZNThfVV3neRiGdR/arcgis/rest/services/Protractions/FeatureServer/0"]];
-	self.queryTask.delegate = self;
-	
-	//return all fields in query
-	self.query = [AGSQuery query];
-	self.query.outFields = [NSArray arrayWithObjects:@"*", nil];
-    self.query.where = @"1=1";
- //   self.queryTask = [QueryTask alloc];
-    
+    self.queryTask = [QueryTask alloc];
     [self loadWebMap];
     //[self loadMap];
 
@@ -237,16 +225,7 @@
         }
     }
     
-   // QueryTask *queryTask = [QueryTask alloc];
-   // [queryTask getActivePlatforms];
-   // [queryTask getProtractions]
-    
-    
-    NSLog(@"features.count = %u", self.featureSet.features.count);
-    
-    //AGSGraphic *feature = [queryTask.featureSet.features objectAtIndex:0];
-    
-//[self.queryTask getActivePlatforms];
+    [self.queryTask getActivePlatforms];
 }
 
 #pragma mark Table Methods
@@ -320,7 +299,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                           message:message delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil];
-    [self.queryTask executeWithQuery:self.query];
+    //[self.queryTask executeWithQuery:self.query];
+    //[self.queryTask getActivePlatforms];
     [alert show];
     [self printFeatures];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -328,27 +308,4 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 //end TableView methods
 
-#pragma mark AGSQueryTaskDelegate
-
-//results are returned
- -(void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet {
-    NSLog(@"ViewController.queryTask() started");
-	//get feature, and load in to table
-	self.featureSet = featureSet;
-    NSLog(@"features.count = %u", self.featureSet.features.count);
-    NSLog(@"ViewController.queryTask() finsihed");
-}
-
-//if there's an error with the query display it to the user
-- (void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didFailWithError:(NSError *)error {
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-														message:[error localizedDescription]
-													   delegate:nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-    NSLog(@"hit queryTask error method");
-    NSLog(@"Error localizedDesc: %@", [error localizedDescription]);
-    NSLog(@"Error localizedFailureReason: %@", [error localizedFailureReason]);
-	[alertView show];
-}
 @end
