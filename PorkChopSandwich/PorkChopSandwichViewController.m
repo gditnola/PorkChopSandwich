@@ -8,6 +8,7 @@
 
 #import "PorkChopSandwichViewController.h"
 #import "PorkChopSandwichAppDelegate.h"
+#import "QueryTask.h"
 
 @interface PorkChopSandwichViewController ()
 
@@ -20,6 +21,19 @@
     [self setupRoute];
     [super viewDidLoad];
     NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
+    
+ //   NSString *protractionsURL = @"http://services.arcgis.com/CZNThfVV3neRiGdR/arcgis/rest/services/Protractions/FeatureServer/0";
+	
+	//set up query task against layer, specify the delegate
+	self.queryTask = [AGSQueryTask queryTaskWithURL:[NSURL URLWithString:@"http://services.arcgis.com/CZNThfVV3neRiGdR/arcgis/rest/services/Protractions/FeatureServer/0"]];
+	self.queryTask.delegate = self;
+	
+	//return all fields in query
+	self.query = [AGSQuery query];
+	self.query.outFields = [NSArray arrayWithObjects:@"*", nil];
+    self.query.where = @"1=1";
+ //   self.queryTask = [QueryTask alloc];
+    
     [self loadWebMap];
     //[self loadMap];
 
@@ -143,7 +157,7 @@
 -(void)didOpenWebMap:(AGSWebMap*)webMap intoMapView:(AGSMapView*)mapView{
    	//web map finished opening
     //cbm debug.. remove  below code
-    [self unselectLayer];
+    //[self unselectLayer];
     //cbm debug.. remove above code
      NSLog(@"webMap finished opening.");
 }
@@ -193,10 +207,46 @@
                   sortedArrayUsingSelector:@selector(compare:)];
      */
     
-    self.route = [[NSArray alloc]
-                  initWithObjects:@"Stop 1",@"Stop 2",@"Stop 3",@"Stop 4",@"Stop 5",@"Stop 6",@"Stop 7",@"Stop 8",
-                  @"Stop 9",@"Stop 10",nil];;
+    self.route = [self loadRouteFeatures];
     
+}
+
+-(NSArray *)loadRouteFeatures {
+    NSArray *route = [[NSArray alloc]
+     initWithObjects:@"Stop 1",@"Stop 2",@"Stop 3",@"Stop 4",@"Stop 5",@"Stop 6",@"Stop 7",@"Stop 8",
+     @"Stop 9",@"Stop 10",nil];
+    
+    //for now we will hardcode a route
+    //lets just get the 10 first features in the Active Platforms Layer to start
+    
+    
+    return route;
+}
+
+-(void) printFeatures {
+    AGSWebMapLayerInfo *activePlatformsLayer;
+    NSLog(@"operationalLayers.count = %u", self.webMap.operationalLayers.count);
+    for(int i=0; i<self.webMap.operationalLayers.count; i++) {
+        AGSWebMapLayerInfo *layerInfo = (AGSWebMapLayerInfo *)self.webMap.operationalLayers[i];
+        NSString *layerTitle = layerInfo.title;
+        NSLog(@"Layer: %@",layerTitle);
+        
+        if([layerTitle isEqualToString:@"Platforms - Active - Platforms_-_Active"]) {
+            NSLog(@"Found Protractions Layer");
+            activePlatformsLayer = layerInfo;
+        }
+    }
+    
+   // QueryTask *queryTask = [QueryTask alloc];
+   // [queryTask getActivePlatforms];
+   // [queryTask getProtractions]
+    
+    
+    NSLog(@"features.count = %u", self.featureSet.features.count);
+    
+    //AGSGraphic *feature = [queryTask.featureSet.features objectAtIndex:0];
+    
+//[self.queryTask getActivePlatforms];
 }
 
 #pragma mark Table Methods
@@ -270,9 +320,35 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                           message:message delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil];
+    [self.queryTask executeWithQuery:self.query];
     [alert show];
+    [self printFeatures];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 //end TableView methods
+
+#pragma mark AGSQueryTaskDelegate
+
+//results are returned
+ -(void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet {
+    NSLog(@"ViewController.queryTask() started");
+	//get feature, and load in to table
+	self.featureSet = featureSet;
+    NSLog(@"features.count = %u", self.featureSet.features.count);
+    NSLog(@"ViewController.queryTask() finsihed");
+}
+
+//if there's an error with the query display it to the user
+- (void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didFailWithError:(NSError *)error {
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+														message:[error localizedDescription]
+													   delegate:nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+    NSLog(@"hit queryTask error method");
+    NSLog(@"Error localizedDesc: %@", [error localizedDescription]);
+    NSLog(@"Error localizedFailureReason: %@", [error localizedFailureReason]);
+	[alertView show];
+}
 @end

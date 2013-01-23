@@ -34,6 +34,7 @@
 		D8A10DD916A3598600E1E121 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D8A10DD816A3598600E1E121 /* ArcGIS.bundle */; };
 		D8A10DDB16A35BA200E1E121 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DDA16A35BA200E1E121 /* libstdc++.dylib */; };
 		D8A10DF516AE054600E1E121 /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10DF416AE054600E1E121 /* RouteViewController.m */; };
+		D8A10DF916AE30EC00E1E121 /* QueryTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10DF816AE30EC00E1E121 /* QueryTask.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		D8A10DDA16A35BA200E1E121 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		D8A10DF316AE054600E1E121 /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
 		D8A10DF416AE054600E1E121 /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
+		D8A10DF716AE30EC00E1E121 /* QueryTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryTask.h; sourceTree = "<group>"; };
+		D8A10DF816AE30EC00E1E121 /* QueryTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryTask.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 				D8A10DA416A3585600E1E121 /* PorkChopSandwichViewController.m */,
 				D8A10DA616A3585600E1E121 /* PorkChopSandwichViewController.xib */,
 				D8A10D9216A3585600E1E121 /* Supporting Files */,
+				D8A10DF716AE30EC00E1E121 /* QueryTask.h */,
+				D8A10DF816AE30EC00E1E121 /* QueryTask.m */,
 			);
 			path = PorkChopSandwich;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				D8A10D9C16A3585600E1E121 /* PorkChopSandwichAppDelegate.m in Sources */,
 				D8A10DA516A3585600E1E121 /* PorkChopSandwichViewController.m in Sources */,
 				D8A10DF516AE054600E1E121 /* RouteViewController.m in Sources */,
+				D8A10DF916AE30EC00E1E121 /* QueryTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
