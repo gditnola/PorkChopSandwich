@@ -21,7 +21,7 @@
     [self setupRoute];
     [super viewDidLoad];
     NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
-    self.queryTask = [QueryTask alloc];
+    self.queryTask = [[QueryTask alloc] initWithDelegate:self];
     [self loadWebMap];
     //[self loadMap];
 
@@ -304,6 +304,27 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [alert show];
     [self printFeatures];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet {
+    NSLog(@"QueryTask.queryTask() started");
+	//get feature, and load in to table
+	self.queryTask.featureSet = featureSet;
+    NSLog(@"features.count = %u", self.queryTask.featureSet.features.count);
+    
+    AGSGraphic *feature = [featureSet.features objectAtIndex:0];
+    
+    NSLog(@"QueryTask.queryTask() finsihed");
+}
+
+//if there's an error with the query display it to the user
+- (void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didFailWithError:(NSError *)error {
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+														message:[error localizedDescription]
+													   delegate:nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+	[alertView show];
 }
 
 //end TableView methods

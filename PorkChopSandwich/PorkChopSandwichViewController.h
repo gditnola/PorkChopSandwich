@@ -10,7 +10,7 @@
 #import <ArcGIS/ArcGIS.h>
 #import "QueryTask.h"
 
-@interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate>
+@interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate, AGSQueryTaskDelegate>
 @property (weak, nonatomic) IBOutlet AGSMapView *mapView;
 @property (nonatomic, strong) AGSWebMap *webMap;
 

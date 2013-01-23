@@ -12,6 +12,13 @@
 @implementation QueryTask
 
 
+-(id)initWithDelegate:(PorkChopSandwichViewController *) pcsDelegate{
+    if(self = [super init]) {
+        delegate = pcsDelegate;
+    }
+    return self;
+}
+
 
 -(void)getActivePlatforms{
     NSLog(@"QueryTask.getActivePlatforms()");
@@ -36,7 +43,7 @@
     query.where = @"1=1";
     
     //looks like you need to set a delegate (maybe the ViewController) as in:
-    self.queryTask.delegate = self;
+    self.queryTask.delegate = delegate;
     
     [self.queryTask executeWithQuery:query];
 }
@@ -44,29 +51,30 @@
 -(void)getProtractions {
     NSLog(@"QueryTask.getProtractions()");
     NSURL* url = [NSURL URLWithString:protractionsURL];
-    AGSQueryTask* queryTask = [[AGSQueryTask alloc] initWithURL: url];
+    self.queryTask = [[AGSQueryTask alloc] initWithURL: url];
 
     AGSQuery *query = [AGSQuery query];
     query.outFields = [NSArray arrayWithObjects:@"*", nil];
     query.where = @"MMS_REGION='G'";
     
     //looks like you need to set a delegate (maybe the ViewController) as in:
-    //queryTask.delegate = self;
+    self.queryTask.delegate = delegate;
     
     
-    [queryTask executeWithQuery:query];
+    [self.queryTask executeWithQuery:query];
 }
 
 #pragma mark AGSQueryTaskDelegate
 
 //results are returned
-- (void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet {
+/*- (void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet {
     NSLog(@"QueryTask.queryTask() started");
 	//get feature, and load in to table
 	self.featureSet = featureSet;
     NSLog(@"features.count = %u", self.featureSet.features.count);
     
-    //AGSGraphic *feature = [featureSet.features objectAtIndex:0];
+    AGSGraphic *feature = [featureSet.features objectAtIndex:0];
+
     NSLog(@"QueryTask.queryTask() finsihed");
 }
 
@@ -78,6 +86,6 @@
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];
 	[alertView show];
-}
+}*/
 
 @end
