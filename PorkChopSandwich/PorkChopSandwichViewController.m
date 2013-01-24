@@ -16,6 +16,7 @@
 
 @implementation PorkChopSandwichViewController {
     NSMutableDictionary *routeDictionary;
+    NSMutableArray *routeKeys;
 }
 
 - (void)viewDidLoad
@@ -166,7 +167,7 @@
                   sortedArrayUsingSelector:@selector(compare:)];
      */
 
-    self.route = [self loadRouteFeatures];
+    self.route = routeKeys;
     NSLog(@"finished setupRoute()");
     
 }
@@ -184,7 +185,9 @@
    // NSMutableArray *route = [[NSArray alloc]
    //  initWithObjects:@"Stop 1",@"Stop 2",@"Stop 3",@"Stop 4",@"Stop 5",@"Stop 6",@"Stop 7",@"Stop 8",@"Stop 9",@"Stop 10",nil];
     
+    
     NSMutableArray *route = [[NSMutableArray alloc]init];
+    if(routeDictionary == Nil) {
     routeDictionary = [[NSMutableDictionary alloc] init];
     
     NSLog(@"loadRouteFeatures.count = %u", self.queryTask.featureSet.features.count);
@@ -202,6 +205,7 @@
     NSString *testComplexId = [testFeature.attributes objectForKey:@"COMPLEX_ID"];
     NSLog(@"testing dictionary key of A-Magnolia TLP's complex_id = %@", testComplexId);
     //above should have waited til finished, now can get features from delegate
+    }
     NSLog(@"finished loadRouteFeatures()");
     return route;
 }
@@ -308,6 +312,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	//get feature, and load in to table
 	self.queryTask.featureSet = featureSet;
     NSLog(@"features.count = %u", self.queryTask.featureSet.features.count);
+    
+    if(routeDictionary == Nil) {
+        routeKeys = [self loadRouteFeatures];
+    }
     
     //AGSGraphic *feature = [featureSet.features objectAtIndex:0];
     //NSArray *allKeys = [feature.attributes allKeys];
