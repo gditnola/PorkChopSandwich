@@ -10,13 +10,18 @@
 #import <ArcGIS/ArcGIS.h>
 #import "QueryTask.h"
 
-@interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate, AGSQueryTaskDelegate>
+@interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate, AGSQueryTaskDelegate> {
+    IBOutlet UITableView* routeTableView;
+    
+}
 @property (weak, nonatomic) IBOutlet AGSMapView *mapView;
 @property (nonatomic, strong) AGSWebMap *webMap;
 
 //route tableview
 //@property (nonatomic,retain) NSDictionary *daysOfWeek;
-@property (nonatomic,retain) NSArray *route;
+@property (nonatomic,retain) NSMutableArray *route;
 @property (nonatomic,retain) QueryTask *queryTask;
+
+- (IBAction)toggle:(UIButton *)sender;
 
 @end

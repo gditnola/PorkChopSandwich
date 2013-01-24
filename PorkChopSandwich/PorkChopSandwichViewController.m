@@ -14,19 +14,33 @@
 
 @end
 
-@implementation PorkChopSandwichViewController
+@implementation PorkChopSandwichViewController {
+    NSMutableDictionary *routeDictionary;
+}
 
 - (void)viewDidLoad
 {
-    [self setupRoute];
-    [super viewDidLoad];
-    NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
     self.queryTask = [[QueryTask alloc] initWithDelegate:self];
+    [self initRouteFeatures];
+    [super viewDidLoad];
+    [routeTableView setHidden:true];
+    NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
     [self loadWebMap];
     //[self loadMap];
 
 }
 
+- (IBAction)toggle:(UIButton *)sender {
+    NSLog(@"toggle");
+    [self setupRoute];
+    if([routeTableView isHidden]) {
+        [routeTableView reloadData];
+        [routeTableView setHidden:false];
+    }
+    else {
+        [routeTableView setHidden:true];
+    }
+}
 
 
 
@@ -39,51 +53,7 @@
 
 -(void)unselectLayer {
     NSLog(@"unselectLayer()");
-    //AGSWebMapBaseMap *baseMap = self.webMap.baseMap;
-    //NSLog(@"Layer Count: %u",baseMap.baseMapLayers.count);
 
-//    for(int i=0; i<baseMap.baseMapLayers.count; i++) {
-//        NSLog(@"Layer: %@",baseMap.baseMapLayers[i]);
-//    }
-    
-    
-    //id protraction;
-/*    AGSWebMapLayerInfo *layerInfo = (AGSWebMapLayerInfo *)baseMap.baseMapLayers[0];
-    NSLog(@"Testing layerInfo...");
-    const char* className = class_getName([layerInfo class]);
-    NSLog(@"yourObject is a: %s", className);
-    NSLog(@"layerInfo.layerId: %@", [layerInfo layerId]);
-    if(layerInfo == nil) {
-        NSLog(@"layerInfo is nil");
-    }
-    else {
-        NSLog(@"layerInfo is not nil");
-    }
-    
-    if(layerInfo.layers == nil) {
-        NSLog(@"layerInfo.layers is nil");
-    }
-    else {
-        NSLog(@"layerInfo.layers is not nil");
-    }
-    NSLog(@"BaseMap layer count: %u", layerInfo.layers.count);
- */
- /*   AGSWebMapLayerInfo *protractionsLayer;
-    NSLog(@"operationalLayers.count = %u", self.webMap.operationalLayers.count);
-    for(int i=0; i<self.webMap.operationalLayers.count; i++) {
-        AGSWebMapLayerInfo *layerInfo = (AGSWebMapLayerInfo *)self.webMap.operationalLayers[i];
-        NSString *layerTitle = layerInfo.title;
-        NSLog(@"Layer: %@",layerTitle);
-
-        if([layerTitle isEqualToString:@"Protractions"]) {
-            NSLog(@"Found Protractions Layer");
-            protractionsLayer = layerInfo;
-        }
-    }
-    
-    NSLog(@"Deleting protractions from array");
-   // protractionsLayer.visibility = false;
-  */
   
 }
 
@@ -173,6 +143,7 @@
 
 //begin TableView methods
 -(void)setupRoute {
+    NSLog(@"setupRoute()");
     /*
      //this will setup grouped tableview
      NSArray *monday = [[NSArray alloc]
@@ -194,20 +165,44 @@
     self.routes =[[self.daysOfWeek allKeys]
                   sortedArrayUsingSelector:@selector(compare:)];
      */
-    
+
     self.route = [self loadRouteFeatures];
+    NSLog(@"finished setupRoute()");
     
 }
 
--(NSArray *)loadRouteFeatures {
-    NSArray *route = [[NSArray alloc]
-     initWithObjects:@"Stop 1",@"Stop 2",@"Stop 3",@"Stop 4",@"Stop 5",@"Stop 6",@"Stop 7",@"Stop 8",
-     @"Stop 9",@"Stop 10",nil];
-    
+-(void)initRouteFeatures {
     //for now we will hardcode a route
     //lets just get the 10 first features in the Active Platforms Layer to start
     
+    NSString *inClause = @"('A-Magnolia TLP', 'A-Red Hawk Spar', 'A-Gunnison Spar', 'A-Nansen Spar', 'A-Boomvang Spar', 'A-Hoover Spar', 'A(Perdido)', 'A-Brutus TLP', 'A-Front Runner', 'A(Mirage/Titan)')";
+    [self.queryTask getActivePlatformsWhereStrNameIn:inClause];
+    //[operation waitUntilFinished];
+}
+
+-(NSMutableArray *)loadRouteFeatures {
+   // NSMutableArray *route = [[NSArray alloc]
+   //  initWithObjects:@"Stop 1",@"Stop 2",@"Stop 3",@"Stop 4",@"Stop 5",@"Stop 6",@"Stop 7",@"Stop 8",@"Stop 9",@"Stop 10",nil];
     
+    NSMutableArray *route = [[NSMutableArray alloc]init];
+    routeDictionary = [[NSMutableDictionary alloc] init];
+    
+    NSLog(@"loadRouteFeatures.count = %u", self.queryTask.featureSet.features.count);
+    //[route initwi];
+   
+    for(int i=0; i<self.queryTask.featureSet.features.count; i++) {
+        AGSGraphic *feature = [self.queryTask.featureSet.features objectAtIndex:i];
+        NSString *strName = [feature.attributes objectForKey:@"STR_NAME"];
+        [route addObject:strName];
+        NSLog(@"added structure name = %@", strName );
+        [routeDictionary setObject:feature forKey:strName];
+    }
+    
+    AGSGraphic *testFeature = [routeDictionary objectForKey:@"A-Magnolia TLP"];
+    NSString *testComplexId = [testFeature.attributes objectForKey:@"COMPLEX_ID"];
+    NSLog(@"testing dictionary key of A-Magnolia TLP's complex_id = %@", testComplexId);
+    //above should have waited til finished, now can get features from delegate
+    NSLog(@"finished loadRouteFeatures()");
     return route;
 }
 
@@ -225,7 +220,8 @@
         }
     }
     
-    [self.queryTask getActivePlatforms];
+    NSString *inClause = @"('A-Magnolia TLP', 'A-Red Hawk Spar', 'A-Gunnison Spar', 'A-Nansen Spar', 'A-Boomvang Spar', 'A-Hoover Spar', 'A(Perdido)', 'A-Brutus TLP', 'A-Front Runner', 'A(Mirage/Titan)')";
+    [self.queryTask getActivePlatformsWhereStrNameIn:inClause];
 }
 
 #pragma mark Table Methods
@@ -239,7 +235,7 @@
 titleForHeaderInSection:(NSInteger)section
 {
     //return [self.route objectAtIndex:section];
-    return @"Today's Inspections";
+    return @"Scheduled Inspections";
 }
 
 - (NSInteger)tableView:(UITableView *)table
@@ -305,6 +301,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self printFeatures];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+//end TableView methods
 
 - (void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet {
     NSLog(@"QueryTask.queryTask() started");
@@ -312,7 +309,20 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	self.queryTask.featureSet = featureSet;
     NSLog(@"features.count = %u", self.queryTask.featureSet.features.count);
     
-    AGSGraphic *feature = [featureSet.features objectAtIndex:0];
+    //AGSGraphic *feature = [featureSet.features objectAtIndex:0];
+    //NSArray *allKeys = [feature.attributes allKeys];
+    //for(int i=0; i<allKeys.count; i++) {
+    //    NSLog(@"Key: %@", allKeys[i]);
+    //}
+    
+    //COMPLEX_ID, STR_NUMBER, STR_NAME
+    //NSString *complexId = [feature.attributes objectForKey:@"COMPLEX_ID"];
+    //NSString *strNumber = [feature.attributes objectForKey:@"STR_NUMBER"];
+    //NSString *strName = [feature.attributes objectForKey:@"STR_NAME"];
+    
+    //NSLog(@"complexId: %@", complexId);
+    //NSLog(@"strNumber: %@", strNumber);
+    //NSLog(@"strName: %@", strName);
     
     NSLog(@"QueryTask.queryTask() finsihed");
 }
@@ -327,6 +337,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[alertView show];
 }
 
-//end TableView methods
+
 
 @end

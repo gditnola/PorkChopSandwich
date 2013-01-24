@@ -48,6 +48,71 @@
     [self.queryTask executeWithQuery:query];
 }
 
+-(void)getActivePlatforms:(NSString *)complexId stringNumber:(NSString *)stringNumber stringName:(NSString *)stringName {
+    NSLog(@"QueryTask.getActivePlatforms()");
+    NSURL* url = [NSURL URLWithString:activePlatformsLayerURL];
+    self.queryTask = [[AGSQueryTask alloc] initWithURL: url];
+
+    AGSQuery *query = [AGSQuery query];
+    query.outFields = [NSArray arrayWithObjects:@"*", nil];
+    query.where = @"COMPLEX_ID='";
+    query.where = [query.where stringByAppendingString:complexId];
+    query.where = [query.where stringByAppendingString:@"' and STR_NUMBER = '"];
+    query.where = [query.where stringByAppendingString:stringNumber];
+    query.where = [query.where stringByAppendingString:@"' and STR_NAME = '"];
+    query.where = [query.where stringByAppendingString:stringName];
+    query.where = [query.where stringByAppendingString:@"'"];
+    
+    //appending strings result = [result stringByAppendingString:string1];
+    
+    //looks like you need to set a delegate (maybe the ViewController) as in:
+    self.queryTask.delegate = delegate;
+    
+    [self.queryTask executeWithQuery:query];
+}
+
+-(void)getActivePlatforms:(NSString *)strName {
+    NSURL* url = [NSURL URLWithString:activePlatformsLayerURL];
+    self.queryTask = [[AGSQueryTask alloc] initWithURL: url];
+    
+    AGSQuery *query = [AGSQuery query];
+    query.outFields = [NSArray arrayWithObjects:@"*", nil];
+    query.where = @"STR_NAME='";
+    query.where = [query.where stringByAppendingString:strName];
+    query.where = [query.where stringByAppendingString:@"'"];
+    
+    //appending strings result = [result stringByAppendingString:string1];
+    
+    //looks like you need to set a delegate (maybe the ViewController) as in:
+    self.queryTask.delegate = delegate;
+    
+    [self.queryTask executeWithQuery:query];
+}
+
+-(NSOperation *)getActivePlatformsWhereStrNameIn:(NSString *)inClause {
+    NSLog(@"getActivePlatformsWhereStrNameIn()");
+    NSURL* url = [NSURL URLWithString:activePlatformsLayerURL];
+    self.queryTask = [[AGSQueryTask alloc] initWithURL: url];
+    
+    AGSQuery *query = [AGSQuery query];
+    query.outFields = [NSArray arrayWithObjects:@"*", nil];
+    query.where = @"STR_NAME in";
+    query.where = [query.where stringByAppendingString:inClause];
+    
+    //appending strings result = [result stringByAppendingString:string1];
+    
+    //looks like you need to set a delegate (maybe the ViewController) as in:
+    self.queryTask.delegate = delegate;
+    
+    NSOperation *operation = [self.queryTask executeWithQuery:query];
+    return operation;
+    //[operation waitUntilFinished];//want to wait until finished, so we can load the initial objects
+    //while(![operation isFinished]) {
+        
+    //}
+    //NSLog(@"Operation finished.");
+}
+
 -(void)getProtractions {
     NSLog(@"QueryTask.getProtractions()");
     NSURL* url = [NSURL URLWithString:protractionsURL];
@@ -64,28 +129,5 @@
     [self.queryTask executeWithQuery:query];
 }
 
-#pragma mark AGSQueryTaskDelegate
-
-//results are returned
-/*- (void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet {
-    NSLog(@"QueryTask.queryTask() started");
-	//get feature, and load in to table
-	self.featureSet = featureSet;
-    NSLog(@"features.count = %u", self.featureSet.features.count);
-    
-    AGSGraphic *feature = [featureSet.features objectAtIndex:0];
-
-    NSLog(@"QueryTask.queryTask() finsihed");
-}
-
-//if there's an error with the query display it to the user
-- (void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didFailWithError:(NSError *)error {
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-														message:[error localizedDescription]
-													   delegate:nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-	[alertView show];
-}*/
 
 @end

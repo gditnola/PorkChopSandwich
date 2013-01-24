@@ -25,6 +25,8 @@
 
 -(id)initWithDelegate:(PorkChopSandwichViewController *) pcsDelegate;
 -(void)getActivePlatforms;
--(void)getProtractions;
+-(void)getProtractions;-(void)getActivePlatforms:(NSString *)complexId strNumber:(NSString *)strNumber strName:(NSString *)strName;
+-(void)getActivePlatforms:(NSString *)strName;
+-(NSOperation *)getActivePlatformsWhereStrNameIn:(NSString *)inClause;
 
 @end
