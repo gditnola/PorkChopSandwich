@@ -10,18 +10,28 @@
 #import "PorkChopSandwichAppDelegate.h"
 #import "QueryTask.h"
 
+
+
+
 @interface PorkChopSandwichViewController ()
 
 @end
+
+
 
 @implementation PorkChopSandwichViewController {
     NSMutableDictionary *routeDictionary;
     NSMutableArray *routeKeys;
 }
 
+
 - (void)viewDidLoad
 {
     self.queryTask = [[QueryTask alloc] initWithDelegate:self];
+    self.mapView.touchDelegate = self;
+    self.mapView.callout.hidden = YES;
+
+    
     [self initRouteFeatures];
     [super viewDidLoad];
     [routeTableView setHidden:true];
@@ -30,6 +40,9 @@
     //[self loadMap];
 
 }
+
+
+
 
 - (IBAction)toggle:(UIButton *)sender {
     NSLog(@"toggle");
@@ -126,6 +139,11 @@
      NSLog(@"webMap loaded layer: %@", [layer name]);
 }
 
+
+
+
+
+
 -(void)webMap:(AGSWebMap*)wm didFailToLoadLayer:(NSString*)layerTitle url:(NSURL*)url baseLayer:(BOOL)baseLayer federated:(BOOL)federated withError:(NSError*)error{
     NSLog(@"Error while loading layer: %@",[error localizedDescription]);
     
@@ -140,6 +158,27 @@
 {
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
+
+-(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint graphics:(NSDictionary *)graphics{
+
+    AGSGeometryEngine* ge = [AGSGeometryEngine defaultGeometryEngine];
+    AGSSpatialReference* sr = [AGSSpatialReference spatialReferenceWithWKID:4267];
+    AGSGeometry* projectedPoint = [ge projectGeometry:mappoint toSpatialReference:sr];
+    
+
+    self.mapView.callout.hidden = true;
+    self.mapView.callout.accessoryButtonHidden = true;
+    self.mapView.callout.title = @"Point in NAD27";
+    self.mapView.callout.detail = [NSString stringWithFormat:@"%g,%g",((AGSPoint *) projectedPoint).x,((AGSPoint *)projectedPoint).y];
+                                        
+    [self.mapView showCalloutAtPoint:mappoint];
+    
+    
+    // NSLog(@"%g,%g",((AGSPoint *) projectedPoint).x,((AGSPoint *)projectedPoint).y);
+    
+    
+}
+
 
 
 //begin TableView methods
@@ -344,7 +383,5 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 											  otherButtonTitles:nil];
 	[alertView show];
 }
-
-
 
 @end

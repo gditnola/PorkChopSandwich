@@ -10,7 +10,7 @@
 #import <ArcGIS/ArcGIS.h>
 #import "QueryTask.h"
 
-@interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate, AGSQueryTaskDelegate> {
+@interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate, AGSQueryTaskDelegate, AGSMapViewTouchDelegate, AGSMapViewCalloutDelegate> {
     IBOutlet UITableView* routeTableView;
     
 }
