@@ -8,6 +8,7 @@
 
 #import "PorkChopSandwichViewController.h"
 #import "PorkChopSandwichAppDelegate.h"
+#import "FeatureGraphNode.h"
 #import "QueryTask.h"
 
 @interface PorkChopSandwichViewController ()
@@ -16,30 +17,43 @@
 
 @implementation PorkChopSandwichViewController {
     NSMutableDictionary *routeDictionary;
+    NSMutableArray *routeFeatures;
     NSMutableArray *routeKeys;
 }
 
 - (void)viewDidLoad
 {
-    self.queryTask = [[QueryTask alloc] initWithDelegate:self];
-    [self initRouteFeatures];
     [super viewDidLoad];
-    [routeTableView setHidden:true];
-    NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
     [self loadWebMap];
     //[self loadMap];
+    self.queryTask = [[QueryTask alloc] initWithDelegate:self];
+    self.routeTask =[[RouteTask alloc] initWithDelegate:self];
+    [self initCurrentLocation];
+    [self initRouteFeatures];
+    [routeTableView setHidden:true];
+    NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
 
 }
 
 - (IBAction)toggle:(UIButton *)sender {
     NSLog(@"toggle");
-    [self setupRoute];
+    //[self setupRoute];
     if([routeTableView isHidden]) {
         [routeTableView reloadData];
         [routeTableView setHidden:false];
     }
     else {
         [routeTableView setHidden:true];
+    }
+    
+    //[self addRouteToMap];
+    //[self.mapView removeMapLayerWithName:@"Protractions"];
+    
+    NSLog(@"calculated route: ");
+    for(int i=0; i<routeFeatures.count; i++) {
+        AGSGraphic *feature = routeFeatures[i];
+        NSString *strName = [feature.attributes objectForKey:@"STR_NAME"];
+        NSLog(@"%u: %@", i, strName);
     }
 }
 
@@ -119,6 +133,7 @@
     //[self unselectLayer];
     //cbm debug.. remove above code
      NSLog(@"webMap finished opening.");
+    [self addRouteToMap];
 }
 
 -(void)webMap:(AGSWebMap*)wm didLoadLayer:(AGSLayer*)layer{
@@ -145,38 +160,146 @@
 //begin TableView methods
 -(void)setupRoute {
     NSLog(@"setupRoute()");
-    /*
-     //this will setup grouped tableview
-     NSArray *monday = [[NSArray alloc]
-                       initWithObjects:@"Stop 1",@"Stop 2",@"Stop3",nil];
-    NSArray *tuesday = [[NSArray alloc]
-                        initWithObjects:@"Stop 1",@"Stop 2",@"Stop3",nil];
-    NSArray *wednesday = [[NSArray alloc]
-                          initWithObjects:@"Stop 1",@"Stop 2",@"Stop3",nil];
-    NSArray *thursday = [[NSArray alloc]
-                         initWithObjects:@"Stop 1",@"Stop 2",@"Stop3",nil];
-    NSArray *friday = [[NSArray alloc]
-                       initWithObjects:@"Stop 1",@"Stop 2",@"Stop3",nil];
-    
-    self.daysOfWeek = [[NSDictionary alloc]
-                       initWithObjectsAndKeys:monday,@"Monday",tuesday,
-                       @"Tuesday",wednesday,@"Wednesday",thursday,@"Thursday",
-                       friday,@"Friday",nil];
-    
-    self.routes =[[self.daysOfWeek allKeys]
-                  sortedArrayUsingSelector:@selector(compare:)];
-     */
 
     self.route = routeKeys;
+    //[self.routeTask getRoute:self.queryTask.featureSet.features]; //for esri GASRouteTask
+    //actually calculate the route
+    
+    AGSGraphic *feature = routeFeatures[0];
+    AGSPoint *testPoint = feature.geometry; //end point for this edge
+    
+    routeFeatures = [self.routeTask getCustomRouteFrom:self.currentLocation To:routeFeatures WithId:@"STR_NAME"];
+    //[self addRouteToMap];
+    NSLog(@"my routeFeatures.count = %u", routeFeatures.count);
+    routeKeys = [[NSMutableArray alloc] init];
+    for(int i=0; i<routeFeatures.count; i++) {
+        AGSGraphic *graphic = routeFeatures[i];
+        NSString *strName = [graphic.attributes objectForKey:@"STR_NAME"];
+        if(strName != nil) {
+            NSLog(@"adding route stop: %@", strName);
+            [routeKeys addObject:strName];
+        }
+    }
+    NSLog(@"routeKeys.count = %u", routeKeys.count);
+    
+    self.route = routeKeys;
+    
+    NSLog(@"self.route.count = %u", self.route.count);
+    for(int i=0; i<self.route.count; i++) {
+        NSString *routeStop = self.route[i];
+        NSLog(@"route stop: %@", routeStop);
+    }
+    
+    [routeTableView reloadData];
     NSLog(@"finished setupRoute()");
     
 }
+
+-(void)addRouteToMap {
+    NSLog(@"addRouteToMap()");
+    AGSGraphicsLayer* stopsLayer = [AGSGraphicsLayer graphicsLayer];
+    AGSGraphicsLayer* routeLayer = [AGSGraphicsLayer graphicsLayer];//lines connecting stops
+    
+    [self.mapView addMapLayer:stopsLayer withName:@"Stops"];
+    [self.mapView addMapLayer:routeLayer withName:@"Route"];
+    
+    AGSSimpleMarkerSymbol* stopFillSymbol = [[AGSSimpleMarkerSymbol alloc] init];
+    stopFillSymbol.style = AGSSimpleMarkerSymbolStyleCircle;
+    stopFillSymbol.size = 8;
+    stopFillSymbol.color = [[UIColor greenColor] colorWithAlphaComponent:0.75];
+    stopFillSymbol.outline.color = [UIColor darkGrayColor];
+    
+    AGSSimpleLineSymbol* routeFillSymbol = [[AGSSimpleLineSymbol alloc] init];
+    routeFillSymbol.style = AGSSimpleLineSymbolStyleDash;
+    //routeFillSymbol.size = 3;
+    routeFillSymbol.color = [[UIColor greenColor] colorWithAlphaComponent:1];
+    routeFillSymbol.width = 2;
+    
+    //featureSet.features is the result of a Query task.
+    //It is an array of AGSGraphic objects containing
+    //geometries, but not symbols.
+    AGSGraphic *firstStopGraphic = routeFeatures[0];
+    int i=0;
+    for (AGSGraphic *stopGraphic in routeFeatures) {
+        i++;
+        stopGraphic.symbol = stopFillSymbol;
+        //add the graphic to the layer
+        [stopsLayer addGraphic:stopGraphic];
+        AGSPoint *stopPoint = stopGraphic.geometry;
+        
+        if(i<routeFeatures.count) { //don't add if there are no more nodes
+            //create line graphic from this node to next node
+            AGSGraphic *nextGraphic = routeFeatures[i];
+            AGSPoint *nextPoint = nextGraphic.geometry;
+            AGSMutablePolyline *routeLine = [[AGSMutablePolyline alloc]initWithSpatialReference:nextPoint.spatialReference];
+
+            [routeLine addPathToPolyline];
+            [routeLine addPointToPath:stopPoint];
+            [routeLine addPointToPath:nextPoint];
+            
+            //Create the Graphic, using the symbol and
+            //geometry created earlier
+            AGSGraphic* routeGraphic =
+            [AGSGraphic graphicWithGeometry:routeLine
+                                 symbol:routeFillSymbol
+                             attributes:nil
+                   infoTemplateDelegate:nil];
+            
+            [routeLayer addGraphic:routeGraphic];
+        }
+    }
+
+    [self.mapView zoomToGeometry:firstStopGraphic.geometry withPadding:0 animated:true];
+    //Tell the layer to redraw itself
+    [stopsLayer dataChanged];
+    [routeLayer dataChanged];
+}
+
+-(void)initCurrentLocation {
+    NSLog(@"initCurrentLocation()");
+    //create a marker symbol to be used by our Graphic
+    AGSSimpleMarkerSymbol *myMarkerSymbol =
+	[AGSSimpleMarkerSymbol simpleMarkerSymbol];
+    myMarkerSymbol.color = [UIColor blueColor];
+    
+    //Create an AGSPoint (which inherits from AGSGeometry) that
+    //defines where the Graphic will be drawn
+    AGSSpatialReference *spatialReference = [[AGSSpatialReference alloc] initWithWKID:102100];
+    //(-10097851.350057,3205756.622786)
+    
+    AGSPoint* myMarkerPoint =
+	[AGSPoint pointWithX:-10097851.350057
+                       y:3205756.622786
+		spatialReference:spatialReference];
+    
+    //Create the Graphic, using the symbol and
+    //geometry created earlier
+    self.currentLocation = 
+	[AGSGraphic graphicWithGeometry:myMarkerPoint
+                             symbol:myMarkerSymbol
+                         attributes:nil
+               infoTemplateDelegate:nil];
+    
+    if(self.currentLocation == nil) {
+        NSLog(@"currentLocation is nil");
+    }
+    else {
+        NSLog(@"currentLocation is not nil");
+    }
+    
+    //Add the graphic to the Graphics layer
+    //[myGraphicsLayer addGraphic:myGraphic];
+    
+    //Tell the layer to redraw itself
+    //[myGraphicsLayer dataChanged];
+}
+
 
 -(void)initRouteFeatures {
     //for now we will hardcode a route
     //lets just get the 10 first features in the Active Platforms Layer to start
     
-    NSString *inClause = @"('A-Magnolia TLP', 'A-Red Hawk Spar', 'A-Gunnison Spar', 'A-Nansen Spar', 'A-Boomvang Spar', 'A-Hoover Spar', 'A(Perdido)', 'A-Brutus TLP', 'A-Front Runner', 'A(Mirage/Titan)')";
+    NSString *inClause = @"('A-Magnolia TLP', 'A-Red Hawk Spar', 'A-Gunnison Spar', 'A-Nansen Spar', 'A-Boomvang Spar', 'A-Hoover Spar', 'A(Perdido)', 'A-Brutus TLP', 'A-Front Runner')";
     [self.queryTask getActivePlatformsWhereStrNameIn:inClause];
     //[operation waitUntilFinished];
 }
@@ -187,6 +310,7 @@
     
     
     NSMutableArray *route = [[NSMutableArray alloc]init];
+    routeFeatures = [[NSMutableArray alloc]init];
     if(routeDictionary == Nil) {
     routeDictionary = [[NSMutableDictionary alloc] init];
     
@@ -197,6 +321,7 @@
         AGSGraphic *feature = [self.queryTask.featureSet.features objectAtIndex:i];
         NSString *strName = [feature.attributes objectForKey:@"STR_NAME"];
         [route addObject:strName];
+        [routeFeatures addObject:feature];
         NSLog(@"added structure name = %@", strName );
         [routeDictionary setObject:feature forKey:strName];
     }
@@ -206,26 +331,10 @@
     NSLog(@"testing dictionary key of A-Magnolia TLP's complex_id = %@", testComplexId);
     //above should have waited til finished, now can get features from delegate
     }
+    
+    [self setupRoute];
     NSLog(@"finished loadRouteFeatures()");
     return route;
-}
-
--(void) printFeatures {
-    AGSWebMapLayerInfo *activePlatformsLayer;
-    NSLog(@"operationalLayers.count = %u", self.webMap.operationalLayers.count);
-    for(int i=0; i<self.webMap.operationalLayers.count; i++) {
-        AGSWebMapLayerInfo *layerInfo = (AGSWebMapLayerInfo *)self.webMap.operationalLayers[i];
-        NSString *layerTitle = layerInfo.title;
-        NSLog(@"Layer: %@",layerTitle);
-        
-        if([layerTitle isEqualToString:@"Platforms - Active - Platforms_-_Active"]) {
-            NSLog(@"Found Protractions Layer");
-            activePlatformsLayer = layerInfo;
-        }
-    }
-    
-    NSString *inClause = @"('A-Magnolia TLP', 'A-Red Hawk Spar', 'A-Gunnison Spar', 'A-Nansen Spar', 'A-Boomvang Spar', 'A-Hoover Spar', 'A(Perdido)', 'A-Brutus TLP', 'A-Front Runner', 'A(Mirage/Titan)')";
-    [self.queryTask getActivePlatformsWhereStrNameIn:inClause];
 }
 
 #pragma mark Table Methods
@@ -302,7 +411,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //[self.queryTask executeWithQuery:self.query];
     //[self.queryTask getActivePlatforms];
     [alert show];
-    [self printFeatures];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 //end TableView methods
@@ -345,6 +453,54 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[alertView show];
 }
 
+- (void) routeTask:(AGSRouteTask*)routeTask operation:(NSOperation*)op didSolveWithResult:(AGSRouteTaskResult*) routeTaskResult{
+	NSLog(@"Returned routeTask results");
+     
+     // we know that we are only dealing with 1 route...
+     self.routeTask.routeTaskResult = [routeTaskResult.routeResults lastObject];
+    
+    NSLog(@" Calculated Route With %u stops.", self.routeTask.routeTaskResult.routeResults.count);
+     /*if (self.routeResult) {
+     // symbolize the returned route graphic
+     self.routeResult.routeGraphic.symbol = [self routeSymbol];
+     
+     // add the route graphic to the graphic's layer
+     [self.graphicsLayer addGraphic:self.routeResult.routeGraphic];
+     
+     // enable the next button so the user can traverse directions
+     self.nextBtn.enabled = YES;
+     
+     // remove the stop graphics from the graphics layer
+     // careful not to attempt to mutate the graphics array while
+     // it is being enumerated
+     NSMutableArray *graphics = [self.graphicsLayer.graphics mutableCopy];
+     for (AGSGraphic *g in graphics) {
+     if ([g isKindOfClass:[AGSStopGraphic class]]) {
+     [self.graphicsLayer removeGraphic:g];
+     }
+     }
+     
+     // add the returned stops...it's possible these came back in a different order
+     // because we specified findBestSequence
+     for (AGSStopGraphic *sg in self.routeResult.stopGraphics) {
+     
+     // get the sequence from the attribetus
+     BOOL exists;
+     NSInteger sequence = [sg attributeAsIntForKey:@"Sequence" exists:&exists];
+     
+     // create a composite symbol using the sequence number
+     sg.symbol = [self stopSymbolWithNumber:sequence];
+     
+     // add the graphic
+     [self.graphicsLayer addGraphic:sg];
+     }
+     
+     */
+}
+
+- (void) routeTask:(AGSRouteTask*)routeTask operation:(NSOperation*)op didFailSolveWithError:(NSError*) error{
+    NSLog(@"Route Tasking: %@",error);
+}
 
 
 @end

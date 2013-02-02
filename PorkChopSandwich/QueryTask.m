@@ -24,21 +24,9 @@
     NSLog(@"QueryTask.getActivePlatforms()");
     NSURL* url = [NSURL URLWithString:activePlatformsLayerURL];
     self.queryTask = [[AGSQueryTask alloc] initWithURL: url];
-    
-    //query example
-    /*
-     AGSQuery* query = [AGSQuery query];
-     query.where = @"POP2000 > 1000000";
-     query.outFields = [NSArray arrayWithObjects: @"STATE_NAME", @"POP2000", nil];
-     */
-    
-    //spatial query example
-    /*
-     AGSQuery* query = [AGSQuery query];
-     query.geometry = env;
-     query.spatialRelationship =  AGSSpatialRelationshipIntersects;
-     */
+
     AGSQuery *query = [AGSQuery query];
+    query.returnGeometry = true;
     query.outFields = [NSArray arrayWithObjects:@"*", nil];
     query.where = @"1=1";
     
@@ -54,6 +42,7 @@
     self.queryTask = [[AGSQueryTask alloc] initWithURL: url];
 
     AGSQuery *query = [AGSQuery query];
+    query.returnGeometry = true;
     query.outFields = [NSArray arrayWithObjects:@"*", nil];
     query.where = @"COMPLEX_ID='";
     query.where = [query.where stringByAppendingString:complexId];
@@ -95,6 +84,7 @@
     self.queryTask = [[AGSQueryTask alloc] initWithURL: url];
     
     AGSQuery *query = [AGSQuery query];
+    query.returnGeometry = true;
     query.outFields = [NSArray arrayWithObjects:@"*", nil];
     query.where = @"STR_NAME in";
     query.where = [query.where stringByAppendingString:inClause];
@@ -106,11 +96,6 @@
     
     NSOperation *operation = [self.queryTask executeWithQuery:query];
     return operation;
-    //[operation waitUntilFinished];//want to wait until finished, so we can load the initial objects
-    //while(![operation isFinished]) {
-        
-    //}
-    //NSLog(@"Operation finished.");
 }
 
 -(void)getProtractions {
@@ -119,6 +104,7 @@
     self.queryTask = [[AGSQueryTask alloc] initWithURL: url];
 
     AGSQuery *query = [AGSQuery query];
+    query.returnGeometry = true;
     query.outFields = [NSArray arrayWithObjects:@"*", nil];
     query.where = @"MMS_REGION='G'";
     
