@@ -24,6 +24,7 @@
     NSMutableDictionary *routeDictionary;
     NSMutableArray *routeFeatures;
     NSMutableArray *routeKeys;
+    AGSEnvelope *initialEnvelope;
 }
 
 
@@ -147,6 +148,7 @@
     //cbm debug.. remove above code
      NSLog(@"webMap finished opening.");
     [self addRouteToMap];
+    initialEnvelope = [[self.mapView visibleArea] envelope];
 }
 
 -(void)webMap:(AGSWebMap*)wm didLoadLayer:(AGSLayer*)layer{
@@ -431,28 +433,50 @@ titleForHeaderInSection:(NSInteger)section
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //grouped
-    //NSArray *listData =[self.daysOfWeek objectForKey:
-    //                    [self.routes objectAtIndex:[indexPath section]]];
     NSUInteger row = [indexPath row];
     
     //grouped
-    //NSString *rowValue = [listData objectAtIndex:row];
-    
+
     NSString *rowValue = [self.route objectAtIndex:row];
     
-    NSString *message = [[NSString alloc] initWithFormat:rowValue];
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"You selected"
-                          message:message delegate:nil
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil];
+    //NSString *message = [[NSString alloc] initWithFormat:rowValue];
+    //UIAlertView *alert = [[UIAlertView alloc]
+      //                    initWithTitle:@"You selected"
+        //                 message:message delegate:nil
+         //                 cancelButtonTitle:@"OK"
+          //                otherButtonTitles:nil];
     //[self.queryTask executeWithQuery:self.query];
     //[self.queryTask getActivePlatforms];
-    [alert show];
+    //[alert show];
+    AGSGraphic *graphic = [self getGraphicWithName:rowValue];
+    
+    //start by zooming to start extent
+    [self.mapView zoomToEnvelope:initialEnvelope animated:true];
+    [self.mapView zoomToGeometry:graphic.geometry withPadding:0 animated:true];
+    
+    //3 times to make it look good on this map
+    [self.mapView zoomIn:true];
+    [self.mapView zoomIn:true];
+    [self.mapView zoomIn:true];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 //end TableView methods
+
+-(void) zoomToStartExtent {
+    [self.mapView zoomToEnvelope:initialEnvelope animated:true];
+}
+
+-(AGSGraphic *) getGraphicWithName:(NSString *) name{
+    AGSGraphic *graphic;
+    for(graphic in routeFeatures) {
+        NSString *identifier = [graphic.attributes objectForKey:@"STR_NAME"];
+        if([name isEqualToString:identifier]) {
+            break;
+        }
+    }
+    return graphic;
+}
 
 - (void)queryTask:(AGSQueryTask *)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet {
     NSLog(@"QueryTask.queryTask() started");
