@@ -25,6 +25,7 @@
     NSMutableArray *routeFeatures;
     NSMutableArray *routeKeys;
     AGSEnvelope *initialEnvelope;
+    UITableView *lastTableView;
 }
 
 
@@ -41,23 +42,52 @@
 
     
     [self initRouteFeatures];
+    lastTableView = routeTableView;
     [routeTableView setHidden:true];
+    [layerTableView setHidden:true];
+    [scheduleButton setHidden:true];
+    [layerButton setHidden:true];
     NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
 
 }
 
+- (IBAction)showSchedule:(UIButton *)sender {
+    lastTableView = routeTableView;
+    [layerTableView setHidden:true];
+    [layerButton setHidden:false];
+    [routeTableView setHidden:false];
+    [scheduleButton setHidden:true];
+}
 
+- (IBAction)showLayers:(UIButton *)sender {
+    lastTableView = layerTableView;
+    [routeTableView setHidden:true];
+    [scheduleButton setHidden:false];
+    [layerTableView setHidden:false];
+    [layerButton setHidden:true];
+}
 
 
 - (IBAction)toggle:(UIButton *)sender {
     NSLog(@"toggle");
     //[self setupRoute];
-    if([routeTableView isHidden]) {
-        [routeTableView reloadData];
-        [routeTableView setHidden:false];
+    if([routeTableView isHidden] && [layerTableView isHidden]) {
+        if([lastTableView isEqual:routeTableView]) {
+            //[routeTableView reloadData];
+            [routeTableView setHidden:false];
+            [layerButton setHidden:false];
+        }
+        else if([lastTableView isEqual:layerTableView]) {
+            //[layerTableView reloadData];
+            [layerTableView setHidden:false];
+            [scheduleButton setHidden:false];
+        }
     }
     else {
         [routeTableView setHidden:true];
+        [layerTableView setHidden:true];
+        [scheduleButton setHidden:true];
+        [layerButton setHidden:true];
     }
     
     //[self addRouteToMap];
