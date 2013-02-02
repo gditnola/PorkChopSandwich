@@ -35,6 +35,10 @@
     self.queryTask = [[QueryTask alloc] initWithDelegate:self];
     self.routeTask =[[RouteTask alloc] initWithDelegate:self];
     [self initCurrentLocation];
+    self.mapView.touchDelegate = self;
+    self.mapView.callout.hidden = YES;
+
+    
     [self initRouteFeatures];
     [routeTableView setHidden:true];
     NSLog(@"PorkChopSandwichViewController.viewDidLoad()");

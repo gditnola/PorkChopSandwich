@@ -11,7 +11,8 @@
 #import "QueryTask.h"
 #import "RouteTask.h"
 
-@interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate, AGSQueryTaskDelegate, AGSRouteTaskDelegate> {
+@interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate, AGSQueryTaskDelegate, AGSRouteTaskDelegate, AGSMapViewTouchDelegate, AGSMapViewCalloutDelegate>
+{
     IBOutlet UITableView* routeTableView;
     
 }
