@@ -45,8 +45,8 @@
     lastTableView = routeTableView;
     [routeTableView setHidden:true];
     [layerTableView setHidden:true];
-    [scheduleButton setHidden:true];
-    [layerButton setHidden:true];
+    [scheduleHideButton setHidden:true];
+    [layerHideButton setHidden:true];
     NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
 
 }
@@ -55,27 +55,44 @@
     //need to programatically add checkbox for each layer to layerTableView
 }
 
+- (IBAction)hide:(UIButton *)sender {
+    [self hideAll];
+}
+
 - (IBAction)zoomOut:(UIButton *)sender {
     [self.mapView zoomToEnvelope:initialEnvelope animated:true];}
 
 - (IBAction)showSchedule:(UIButton *)sender {
-    lastTableView = routeTableView;
+    /*lastTableView = routeTableView;
     [layerTableView setHidden:true];
     [layerButton setHidden:false];
     [routeTableView setHidden:false];
-    [scheduleButton setHidden:true];
+    [scheduleButton setHidden:true];*/
+    [self hideAll];
+    [routeTableView setHidden:false];
+    [scheduleHideButton setHidden:false];
 }
 
 - (IBAction)showLayers:(UIButton *)sender {
-    lastTableView = layerTableView;
+    /*lastTableView = layerTableView;
     [routeTableView setHidden:true];
     [scheduleButton setHidden:false];
     [layerTableView setHidden:false];
-    [layerButton setHidden:true];
+    [layerButton setHidden:true];*/
+    [self hideAll];
+    [layerTableView setHidden:false];
+    [layerHideButton setHidden:false];
+}
+
+-(void)hideAll {
+    [routeTableView setHidden:true];
+    [scheduleHideButton setHidden:true];
+    [layerTableView setHidden:true];
+    [layerHideButton setHidden:true];
 }
 
 
-- (IBAction)toggle:(UIButton *)sender {
+/*- (IBAction)toggle:(UIButton *)sender {
     NSLog(@"toggle");
     //[self setupRoute];
     if([routeTableView isHidden] && [layerTableView isHidden]) {
@@ -107,7 +124,7 @@
         NSLog(@"%u: %@", i, strName);
     }
 }
-
+*/
 
 
 -(void)loadWebMap {

@@ -15,8 +15,8 @@
 {
     IBOutlet UITableView* routeTableView;
     IBOutlet UIView* layerTableView;
-    IBOutlet UIButton* scheduleButton;
-    IBOutlet UIButton* layerButton;
+    IBOutlet UIButton* scheduleHideButton;
+    IBOutlet UIButton* layerHideButton;
     IBOutlet UIButton* zoomOutButton;
 }
 @property (weak, nonatomic) IBOutlet AGSMapView *mapView;
@@ -29,9 +29,9 @@
 @property (nonatomic,retain) RouteTask *routeTask;
 @property (nonatomic,retain) AGSGraphic *currentLocation;
 
-- (IBAction)toggle:(UIButton *)sender;
 - (IBAction)showSchedule:(UIButton *)sender;
 - (IBAction)showLayers:(UIButton *)sender;
 - (IBAction)zoomOut:(UIButton *)sender;
+- (IBAction)hide:(UIButton *)sender;
 
 @end
