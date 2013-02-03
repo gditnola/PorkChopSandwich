@@ -42,6 +42,7 @@
 		D8A10DDB16A35BA200E1E121 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DDA16A35BA200E1E121 /* libstdc++.dylib */; };
 		D8A10DF516AE054600E1E121 /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10DF416AE054600E1E121 /* RouteViewController.m */; };
 		D8A10DF916AE30EC00E1E121 /* QueryTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10DF816AE30EC00E1E121 /* QueryTask.m */; };
+		D8C8EB4616BF1E6000AC7603 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB4516BF1E6000AC7603 /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		D8A10DF416AE054600E1E121 /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
 		D8A10DF716AE30EC00E1E121 /* QueryTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryTask.h; sourceTree = "<group>"; };
 		D8A10DF816AE30EC00E1E121 /* QueryTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryTask.m; sourceTree = "<group>"; };
+		D8C8EB4516BF1E6000AC7603 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 		D8A10D7C16A3585600E1E121 = {
 			isa = PBXGroup;
 			children = (
+				D8C8EB4416BF1E5F00AC7603 /* images */,
 				D8A10DDA16A35BA200E1E121 /* libstdc++.dylib */,
 				D8A10DD816A3598600E1E121 /* ArcGIS.bundle */,
 				D8A10DD616A3593800E1E121 /* Security.framework */,
@@ -257,6 +260,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D8C8EB4416BF1E5F00AC7603 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				D8C8EB4516BF1E6000AC7603 /* background.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -335,6 +346,7 @@
 				D8A10DA216A3585600E1E121 /* Default-568h@2x.png in Resources */,
 				D8A10DA816A3585600E1E121 /* PorkChopSandwichViewController.xib in Resources */,
 				D8A10DD916A3598600E1E121 /* ArcGIS.bundle in Resources */,
+				D8C8EB4616BF1E6000AC7603 /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
