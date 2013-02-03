@@ -43,6 +43,10 @@
 		D8A10DF516AE054600E1E121 /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10DF416AE054600E1E121 /* RouteViewController.m */; };
 		D8A10DF916AE30EC00E1E121 /* QueryTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10DF816AE30EC00E1E121 /* QueryTask.m */; };
 		D8C8EB4616BF1E6000AC7603 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB4516BF1E6000AC7603 /* background.png */; };
+		D8C8EB5116BF2AAB00AC7603 /* Zoom Out.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB5016BF2AAB00AC7603 /* Zoom Out.png */; };
+		D8C8EB5416BF2C7F00AC7603 /* layers.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB5316BF2C7F00AC7603 /* layers.png */; };
+		D8C8EB5616BF2D4900AC7603 /* schedule.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB5516BF2D4900AC7603 /* schedule.jpeg */; };
+		D8C8EB5816BF2DD500AC7603 /* back.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB5716BF2DD500AC7603 /* back.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +113,10 @@
 		D8A10DF716AE30EC00E1E121 /* QueryTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryTask.h; sourceTree = "<group>"; };
 		D8A10DF816AE30EC00E1E121 /* QueryTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryTask.m; sourceTree = "<group>"; };
 		D8C8EB4516BF1E6000AC7603 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		D8C8EB5016BF2AAB00AC7603 /* Zoom Out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Zoom Out.png"; sourceTree = "<group>"; };
+		D8C8EB5316BF2C7F00AC7603 /* layers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layers.png; sourceTree = "<group>"; };
+		D8C8EB5516BF2D4900AC7603 /* schedule.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = schedule.jpeg; sourceTree = "<group>"; };
+		D8C8EB5716BF2DD500AC7603 /* back.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +271,10 @@
 		D8C8EB4416BF1E5F00AC7603 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D8C8EB5716BF2DD500AC7603 /* back.jpeg */,
+				D8C8EB5516BF2D4900AC7603 /* schedule.jpeg */,
+				D8C8EB5316BF2C7F00AC7603 /* layers.png */,
+				D8C8EB5016BF2AAB00AC7603 /* Zoom Out.png */,
 				D8C8EB4516BF1E6000AC7603 /* background.png */,
 			);
 			path = images;
@@ -347,6 +359,10 @@
 				D8A10DA816A3585600E1E121 /* PorkChopSandwichViewController.xib in Resources */,
 				D8A10DD916A3598600E1E121 /* ArcGIS.bundle in Resources */,
 				D8C8EB4616BF1E6000AC7603 /* background.png in Resources */,
+				D8C8EB5116BF2AAB00AC7603 /* Zoom Out.png in Resources */,
+				D8C8EB5416BF2C7F00AC7603 /* layers.png in Resources */,
+				D8C8EB5616BF2D4900AC7603 /* schedule.jpeg in Resources */,
+				D8C8EB5816BF2DD500AC7603 /* back.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
