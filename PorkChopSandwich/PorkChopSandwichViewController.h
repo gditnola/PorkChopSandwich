@@ -33,5 +33,6 @@
 - (IBAction)showLayers:(UIButton *)sender;
 - (IBAction)zoomOut:(UIButton *)sender;
 - (IBAction)hide:(UIButton *)sender;
+- (IBAction)toggleLayer:(UISwitch *)sender;
 
 @end

@@ -11,7 +11,16 @@
 #import "FeatureGraphNode.h"
 #import "QueryTask.h"
 
-
+#define ACTIVE_PLATFORMS_KEY @"Platforms - Active - Platforms_-_Active"
+#define PROPOSED_PLATFORMS_KEY @"Platforms - Proposed - Platforms_-_Proposed"
+#define REMOVED_PLATFORMS_KEY @"Platforms - Removed - Platforms_-_Removed"
+#define PIPELINES_KEY @"Pipelines"
+#define ACTIVE_LEASES_KEY @"Active Lease Polygons - Active_Lease_Polygons"
+#define PROTRACTIONS_KEY @"Protractions"
+#define BLOCKS_KEY @"Blocks"
+#define ROUTE_KEY @"Route"
+#define STOPS_KEY @"Stops"
+#define RADAR_KEY @"RIDGERadar"
 
 
 @interface PorkChopSandwichViewController ()
@@ -26,6 +35,7 @@
     NSMutableArray *routeKeys;
     AGSEnvelope *initialEnvelope;
     UITableView *lastTableView;
+    NSMutableDictionary *allLayers;
 }
 
 
@@ -51,8 +61,134 @@
 
 }
 
+- (IBAction)toggleLayer:(UISwitch *)sender {
+    //this is pretty stupid of the sdk. doesn't look you can assign a name or id to a uiswitch
+    //instead you have to 'tag' it with an int
+    if(sender.tag==0) {
+        if([sender isOn]) {
+            AGSLayer *layer = [allLayers objectForKey:ACTIVE_PLATFORMS_KEY];
+            [self.mapView addMapLayer:layer withName:ACTIVE_PLATFORMS_KEY];
+        }
+        else {
+            [self.mapView removeMapLayerWithName:ACTIVE_PLATFORMS_KEY];
+        }
+    }
+    else if(sender.tag==1) {
+        if([sender isOn]) {
+            AGSLayer *layer = [allLayers objectForKey:PROPOSED_PLATFORMS_KEY];
+            [self.mapView addMapLayer:layer withName:PROPOSED_PLATFORMS_KEY];
+        }
+        else {
+            [self.mapView removeMapLayerWithName:PROPOSED_PLATFORMS_KEY];
+        }
+    }
+    else if(sender.tag==2) {
+        if([sender isOn]) {
+            AGSLayer *layer = [allLayers objectForKey:REMOVED_PLATFORMS_KEY];
+            [self.mapView addMapLayer:layer withName:REMOVED_PLATFORMS_KEY];
+        }
+        else {
+            [self.mapView removeMapLayerWithName:REMOVED_PLATFORMS_KEY];
+        }
+    }
+    else if(sender.tag==3) {
+        if([sender isOn]) {
+            AGSLayer *layer = [allLayers objectForKey:PIPELINES_KEY];
+            [self.mapView addMapLayer:layer withName:PIPELINES_KEY];
+        }
+        else {
+            [self.mapView removeMapLayerWithName:PIPELINES_KEY];
+        }
+    }
+    else if(sender.tag==4) {
+        if([sender isOn]) {
+            AGSLayer *layer = [allLayers objectForKey:ACTIVE_LEASES_KEY];
+            [self.mapView addMapLayer:layer withName:ACTIVE_LEASES_KEY];
+        }
+        else {
+            [self.mapView removeMapLayerWithName:ACTIVE_LEASES_KEY];
+        }
+    }
+    else if(sender.tag==5) {
+        if([sender isOn]) {
+            AGSLayer *layer = [allLayers objectForKey:PROTRACTIONS_KEY];
+            [self.mapView addMapLayer:layer withName:PROTRACTIONS_KEY];
+        }
+        else {
+            [self.mapView removeMapLayerWithName:PROTRACTIONS_KEY];
+        }
+    }
+    else if(sender.tag==6) {
+        if([sender isOn]) {
+            AGSLayer *layer = [allLayers objectForKey:BLOCKS_KEY];
+            [self.mapView addMapLayer:layer withName:BLOCKS_KEY];
+        }
+        else {
+            [self.mapView removeMapLayerWithName:BLOCKS_KEY];
+        }
+    }
+    else if(sender.tag==7) {//for this one, need to add/remove both stops and routes
+        if([sender isOn]) {
+            AGSLayer *routeLayer = [allLayers objectForKey:ROUTE_KEY];
+            [self.mapView addMapLayer:routeLayer withName:ROUTE_KEY];
+            AGSLayer *stopsLayer = [allLayers objectForKey:STOPS_KEY];
+            [self.mapView addMapLayer:stopsLayer withName:STOPS_KEY];
+        }
+        else {
+            [self.mapView removeMapLayerWithName:ROUTE_KEY];
+            [self.mapView removeMapLayerWithName:STOPS_KEY];
+        }
+    }
+    else if(sender.tag==8) {
+        if([sender isOn]) {
+            AGSLayer *layer = [allLayers objectForKey:RADAR_KEY];
+            [self.mapView addMapLayer:layer withName:RADAR_KEY];
+        }
+        else {
+            [self.mapView removeMapLayerWithName:RADAR_KEY];
+        }
+    }
+}
+
 -(void) loadLayers {
     //need to programatically add checkbox for each layer to layerTableView
+    allLayers = [[NSMutableDictionary alloc] init];
+    //first store all initial layers.. need a copy
+    NSArray *tempLayers = self.mapView.mapLayers;
+    for(int i=0; i<tempLayers.count; i++){
+        AGSLayer *layer = tempLayers[i];
+        if([layer.name isEqualToString:STOPS_KEY]) {
+            [allLayers setObject:layer forKey:STOPS_KEY];
+        }
+        else if([layer.name isEqualToString:ROUTE_KEY]) {
+            [allLayers setObject:layer forKey:ROUTE_KEY];
+        }
+        else if([layer.name isEqualToString:ACTIVE_PLATFORMS_KEY]) {
+            [allLayers setObject:layer forKey:ACTIVE_PLATFORMS_KEY];
+        }
+        else if([layer.name isEqualToString:RADAR_KEY]) {
+            [allLayers setObject:layer forKey:RADAR_KEY];
+        }
+        else if([layer.name isEqualToString:PROPOSED_PLATFORMS_KEY]) {
+            [allLayers setObject:layer forKey:PROPOSED_PLATFORMS_KEY];
+        }
+        else if([layer.name isEqualToString:REMOVED_PLATFORMS_KEY]) {
+            [allLayers setObject:layer forKey:REMOVED_PLATFORMS_KEY];
+        }
+        else if([layer.name isEqualToString:PIPELINES_KEY]) {
+            [allLayers setObject:layer forKey:PIPELINES_KEY];
+        }
+        else if([layer.name isEqualToString:ACTIVE_LEASES_KEY]) {
+            [allLayers setObject:layer forKey:ACTIVE_LEASES_KEY];
+        }
+        else if([layer.name isEqualToString:PROTRACTIONS_KEY]) {
+            [allLayers setObject:layer forKey:PROTRACTIONS_KEY];
+        }
+        else if([layer.name isEqualToString:BLOCKS_KEY]) {
+            [allLayers setObject:layer forKey:BLOCKS_KEY];
+        }
+        
+    }
 }
 
 - (IBAction)hide:(UIButton *)sender {
@@ -196,10 +332,6 @@
 }
 
 -(void)didOpenWebMap:(AGSWebMap*)webMap intoMapView:(AGSMapView*)mapView{
-   	//web map finished opening
-    //cbm debug.. remove  below code
-    //[self unselectLayer];
-    //cbm debug.. remove above code
      NSLog(@"webMap finished opening.");
     [self addRouteToMap];
     [self loadLayers];
