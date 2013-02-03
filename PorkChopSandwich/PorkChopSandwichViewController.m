@@ -39,6 +39,7 @@
 }
 
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -52,13 +53,28 @@
 
     
     [self initRouteFeatures];
+
+    [self initUI];
+    NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
+
+}
+
+//various things to try and improve look of ui
+-(void) initUI {
     lastTableView = routeTableView;
+    
+    //make view corners rounded
+     [layerTableView.layer setCornerRadius:8.0f];
+     [layerTableView.layer setMasksToBounds:YES];
+     [routeTableView.layer setCornerRadius:8.0f];
+     [routeTableView.layer setMasksToBounds:YES];
+    
+    //start with all views hidden
     [routeTableView setHidden:true];
     [layerTableView setHidden:true];
     [scheduleHideButton setHidden:true];
     [layerHideButton setHidden:true];
-    NSLog(@"PorkChopSandwichViewController.viewDidLoad()");
-
+    
 }
 
 - (IBAction)toggleLayer:(UISwitch *)sender {
@@ -199,22 +215,12 @@
     [self.mapView zoomToEnvelope:initialEnvelope animated:true];}
 
 - (IBAction)showSchedule:(UIButton *)sender {
-    /*lastTableView = routeTableView;
-    [layerTableView setHidden:true];
-    [layerButton setHidden:false];
-    [routeTableView setHidden:false];
-    [scheduleButton setHidden:true];*/
     [self hideAll];
     [routeTableView setHidden:false];
     [scheduleHideButton setHidden:false];
 }
 
 - (IBAction)showLayers:(UIButton *)sender {
-    /*lastTableView = layerTableView;
-    [routeTableView setHidden:true];
-    [scheduleButton setHidden:false];
-    [layerTableView setHidden:false];
-    [layerButton setHidden:true];*/
     [self hideAll];
     [layerTableView setHidden:false];
     [layerHideButton setHidden:false];
@@ -419,6 +425,9 @@
     }
     
     [routeTableView reloadData];
+    
+    //resize the table view based on its contents
+    routeTableView.frame = CGRectMake(routeTableView.frame.origin.x, routeTableView.frame.origin.y, routeTableView.frame.size.width, routeTableView.contentSize.height);
     NSLog(@"finished setupRoute()");
     
 }
