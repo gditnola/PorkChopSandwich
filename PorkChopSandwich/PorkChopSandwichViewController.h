@@ -14,9 +14,10 @@
 @interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate, AGSQueryTaskDelegate, AGSRouteTaskDelegate, AGSMapViewTouchDelegate, AGSMapViewCalloutDelegate>
 {
     IBOutlet UITableView* routeTableView;
-    IBOutlet UITableView* layerTableView;
+    IBOutlet UIView* layerTableView;
     IBOutlet UIButton* scheduleButton;
     IBOutlet UIButton* layerButton;
+    IBOutlet UIButton* zoomOutButton;
 }
 @property (weak, nonatomic) IBOutlet AGSMapView *mapView;
 @property (nonatomic, strong) AGSWebMap *webMap;
@@ -31,5 +32,6 @@
 - (IBAction)toggle:(UIButton *)sender;
 - (IBAction)showSchedule:(UIButton *)sender;
 - (IBAction)showLayers:(UIButton *)sender;
+- (IBAction)zoomOut:(UIButton *)sender;
 
 @end

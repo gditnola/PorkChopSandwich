@@ -51,6 +51,13 @@
 
 }
 
+-(void) loadLayers {
+    //need to programatically add checkbox for each layer to layerTableView
+}
+
+- (IBAction)zoomOut:(UIButton *)sender {
+    [self.mapView zoomToEnvelope:initialEnvelope animated:true];}
+
 - (IBAction)showSchedule:(UIButton *)sender {
     lastTableView = routeTableView;
     [layerTableView setHidden:true];
@@ -178,6 +185,7 @@
     //cbm debug.. remove above code
      NSLog(@"webMap finished opening.");
     [self addRouteToMap];
+    [self loadLayers];
     initialEnvelope = [[self.mapView visibleArea] envelope];
 }
 
