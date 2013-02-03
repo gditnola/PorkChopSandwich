@@ -69,6 +69,21 @@
      [routeTableView.layer setCornerRadius:8.0f];
      [routeTableView.layer setMasksToBounds:YES];
     
+    //try this for rounding layerTAbleView, not working so well with above code cause its a UIView?
+    /*[layerTableView.layer setCornerRadius:30.0f];
+    [layerTableView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [layerTableView.layer setBorderWidth:1.5f];
+    [layerTableView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [layerTableView.layer setShadowOpacity:0.8];
+    [layerTableView.layer setShadowRadius:3.0];
+    [layerTableView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];*/
+    
+    //draw border around views
+    layerTableView.layer.borderColor = [UIColor grayColor].CGColor;
+    layerTableView.layer.borderWidth = 1.0f;
+    routeTableView.layer.borderColor = [UIColor grayColor].CGColor;
+    routeTableView.layer.borderWidth = 1.0f;
+    
     //start with all views hidden
     [routeTableView setHidden:true];
     [layerTableView setHidden:true];
