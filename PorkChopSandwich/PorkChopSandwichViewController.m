@@ -259,40 +259,6 @@
 }
 
 
-/*- (IBAction)toggle:(UIButton *)sender {
-    NSLog(@"toggle");
-    //[self setupRoute];
-    if([routeTableView isHidden] && [layerTableView isHidden]) {
-        if([lastTableView isEqual:routeTableView]) {
-            //[routeTableView reloadData];
-            [routeTableView setHidden:false];
-            [layerButton setHidden:false];
-        }
-        else if([lastTableView isEqual:layerTableView]) {
-            //[layerTableView reloadData];
-            [layerTableView setHidden:false];
-            [scheduleButton setHidden:false];
-        }
-    }
-    else {
-        [routeTableView setHidden:true];
-        [layerTableView setHidden:true];
-        [scheduleButton setHidden:true];
-        [layerButton setHidden:true];
-    }
-    
-    //[self addRouteToMap];
-    //[self.mapView removeMapLayerWithName:@"Protractions"];
-    
-    NSLog(@"calculated route: ");
-    for(int i=0; i<routeFeatures.count; i++) {
-        AGSGraphic *feature = routeFeatures[i];
-        NSString *strName = [feature.attributes objectForKey:@"STR_NAME"];
-        NSLog(@"%u: %@", i, strName);
-    }
-}
-*/
-
 
 -(void)loadWebMap {
     NSLog(@"PorkChopSandwichViewController.loadWebMap()");
@@ -377,17 +343,8 @@
 
 
 
-
-
-
 -(void)webMap:(AGSWebMap*)wm didFailToLoadLayer:(NSString*)layerTitle url:(NSURL*)url baseLayer:(BOOL)baseLayer federated:(BOOL)federated withError:(NSError*)error{
     NSLog(@"Error while loading layer: %@",[error localizedDescription]);
-    
-    //you can skip loading this layer
-    //[self.webMap continueOpenAndSkipCurrentLayer];
-    
-    //or you can try loading it with proper credentials if the error was security related
-    //[self.webMap continueOpenWithCredential:credential];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -408,9 +365,6 @@
     self.mapView.callout.detail = [NSString stringWithFormat:@"%g,%g",((AGSPoint *) projectedPoint).x,((AGSPoint *)projectedPoint).y];
                                         
     [self.mapView showCalloutAtPoint:mappoint];
-    
-    
-    // NSLog(@"%g,%g",((AGSPoint *) projectedPoint).x,((AGSPoint *)projectedPoint).y);
     
     
 }
@@ -476,7 +430,7 @@
     routeFillSymbol.style = AGSSimpleLineSymbolStyleDash;
     //routeFillSymbol.size = 3;
     routeFillSymbol.color = [[UIColor greenColor] colorWithAlphaComponent:1];
-    routeFillSymbol.width = 2;
+    routeFillSymbol.width = 3;
     
     //featureSet.features is the result of a Query task.
     //It is an array of AGSGraphic objects containing
