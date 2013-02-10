@@ -47,6 +47,7 @@
 		D8C8EB5416BF2C7F00AC7603 /* layers.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB5316BF2C7F00AC7603 /* layers.png */; };
 		D8C8EB5616BF2D4900AC7603 /* schedule.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB5516BF2D4900AC7603 /* schedule.jpeg */; };
 		D8C8EB5816BF2DD500AC7603 /* back.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB5716BF2DD500AC7603 /* back.jpeg */; };
+		D8C8EB5A16BF847900AC7603 /* welcome.cgi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB5916BF847900AC7603 /* welcome.cgi.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		D8C8EB5316BF2C7F00AC7603 /* layers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layers.png; sourceTree = "<group>"; };
 		D8C8EB5516BF2D4900AC7603 /* schedule.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = schedule.jpeg; sourceTree = "<group>"; };
 		D8C8EB5716BF2DD500AC7603 /* back.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpeg; sourceTree = "<group>"; };
+		D8C8EB5916BF847900AC7603 /* welcome.cgi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = welcome.cgi.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +273,7 @@
 		D8C8EB4416BF1E5F00AC7603 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D8C8EB5916BF847900AC7603 /* welcome.cgi.jpg */,
 				D8C8EB5716BF2DD500AC7603 /* back.jpeg */,
 				D8C8EB5516BF2D4900AC7603 /* schedule.jpeg */,
 				D8C8EB5316BF2C7F00AC7603 /* layers.png */,
@@ -363,6 +366,7 @@
 				D8C8EB5416BF2C7F00AC7603 /* layers.png in Resources */,
 				D8C8EB5616BF2D4900AC7603 /* schedule.jpeg in Resources */,
 				D8C8EB5816BF2DD500AC7603 /* back.jpeg in Resources */,
+				D8C8EB5A16BF847900AC7603 /* welcome.cgi.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +521,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PorkChopSandwich/PorkChopSandwich-Prefix.pch";
 				INFOPLIST_FILE = "PorkChopSandwich/PorkChopSandwich-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -525,6 +530,7 @@
 					"-lstdc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -544,6 +550,7 @@
 					"-lstdc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
