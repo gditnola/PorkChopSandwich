@@ -36,6 +36,7 @@
     AGSEnvelope *initialEnvelope;
     UITableView *lastTableView;
     NSMutableDictionary *allLayers;
+    AGSGraphicsLayer *currentLocationLayer;
 }
 
 
@@ -47,7 +48,8 @@
     //[self loadMap];
     self.queryTask = [[QueryTask alloc] initWithDelegate:self];
     self.routeTask =[[RouteTask alloc] initWithDelegate:self];
-    [self initCurrentLocation];
+    //[self initCurrentLocation];
+    [self startGps];
     self.mapView.touchDelegate = self;
     self.mapView.callout.hidden = YES;
 
@@ -231,6 +233,14 @@
 
 - (IBAction)showSchedule:(UIButton *)sender {
     [self hideAll];
+    
+    [self initCurrentLocation];
+    
+    if(routeDictionary == Nil) {
+        routeKeys = [self loadRouteFeatures];
+        [self addRouteToMap];
+    }
+    
     [routeTableView setHidden:false];
     [scheduleHideButton setHidden:false];
 }
@@ -354,7 +364,8 @@
 
 -(void)didOpenWebMap:(AGSWebMap*)webMap intoMapView:(AGSMapView*)mapView{
      NSLog(@"webMap finished opening.");
-    [self addRouteToMap];
+    //[self initCurrentLocation];
+    //[self addRouteToMap];
     [self loadLayers];
     initialEnvelope = [[self.mapView visibleArea] envelope];
 }
@@ -501,34 +512,63 @@
         }
     }
 
-    [self.mapView zoomToGeometry:firstStopGraphic.geometry withPadding:0 animated:true];
+    //[self.mapView zoomToGeometry:firstStopGraphic.geometry withPadding:0 animated:true];
     //Tell the layer to redraw itself
     [stopsLayer dataChanged];
     [routeLayer dataChanged];
 }
 
+-(void)startGps {
+    if(!self.mapView.gps.enabled){
+        [self.mapView.gps start];
+        self.mapView.gps.autoPanMode = false;
+        //self.mapView.gps.autoPanMode = AGSGPSAutoPanModeDefault;
+        //self.mapView.gps.wanderExtentFactor = 0.75;
+        //self.mapView.gps.navigationPointHeightFactor = 0.8;
+        //UIImage *gpsImg2 = [UIImage imageNamed:@"onGPS.png"];
+        // [self.gpsButton setBackgroundImage:gpsImg2 forState:UIControlStateNormal];
+        // [self.mapView.gps stop];
+        
+    }
+}
+
 -(void)initCurrentLocation {
     NSLog(@"initCurrentLocation()");
-    //create a marker symbol to be used by our Graphic
-    AGSSimpleMarkerSymbol *myMarkerSymbol =
-	[AGSSimpleMarkerSymbol simpleMarkerSymbol];
-    myMarkerSymbol.color = [UIColor blueColor];
     
-    //Create an AGSPoint (which inherits from AGSGeometry) that
-    //defines where the Graphic will be drawn
-    AGSSpatialReference *spatialReference = [[AGSSpatialReference alloc] initWithWKID:102100];
-    //(-10097851.350057,3205756.622786)
+    AGSPoint *gpsPoint = [self.mapView.gps currentPoint];
+    NSLog(@"gpsPoint (x,y) = (%f,%f)", gpsPoint.x, gpsPoint.y);
     
-    AGSPoint* myMarkerPoint =
-	[AGSPoint pointWithX:-10097851.350057
-                       y:3205756.622786
-		spatialReference:spatialReference];
     
-    //Create the Graphic, using the symbol and
-    //geometry created earlier
-    self.currentLocation = 
-	[AGSGraphic graphicWithGeometry:myMarkerPoint
-                             symbol:myMarkerSymbol
+    
+    //AGSSpatialReference *spatialRef = [self.mapView.mapLayers[0] spatialReference];
+    //gpsPoint.spatialReference = spatialRef;
+    
+    //AGSGeometryEngine* ge = [AGSGeometryEngine defaultGeometryEngine];
+    //AGSPoint* projectedPoint = [ge projectGeometry:gpsPoint toSpatialReference:spatialRef];
+    
+    //NSLog(@"projectedPoint (x,y) = (%f,%f)", projectedPoint.x, projectedPoint.y);
+    
+    NSLog(@"current location spatial ref = %u", gpsPoint.spatialReference.wkid);
+    
+    currentLocationLayer = [AGSGraphicsLayer graphicsLayer];
+    
+    [self.mapView addMapLayer:currentLocationLayer withName:@"Current"];
+    
+    AGSSimpleMarkerSymbol* currentFillSymbol = [[AGSSimpleMarkerSymbol alloc] init];
+    currentFillSymbol.style = AGSSimpleMarkerSymbolStyleCircle;
+    currentFillSymbol.size = 14;
+    currentFillSymbol.color = [[UIColor blueColor] colorWithAlphaComponent:0.75];
+    currentFillSymbol.outline.color = [UIColor cyanColor];
+    
+    //self.currentLocation =
+	//[AGSGraphic graphicWithGeometry:projectedPoint
+    //                         symbol:currentFillSymbol
+    //                     attributes:nil
+    //           infoTemplateDelegate:nil];
+    
+    self.currentLocation =
+	[AGSGraphic graphicWithGeometry:gpsPoint
+                             symbol:currentFillSymbol
                          attributes:nil
                infoTemplateDelegate:nil];
     
@@ -539,11 +579,12 @@
         NSLog(@"currentLocation is not nil");
     }
     
-    //Add the graphic to the Graphics layer
-    //[myGraphicsLayer addGraphic:myGraphic];
+    //[currentLocationLayer addGraphic:self.currentLocation];
     
+    //[self.mapView zoomToGeometry:firstStopGraphic.geometry withPadding:0 animated:true];
     //Tell the layer to redraw itself
-    //[myGraphicsLayer dataChanged];
+    //[currentLocationLayer dataChanged];
+    
 }
 
 
@@ -695,9 +736,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	self.queryTask.featureSet = featureSet;
     NSLog(@"features.count = %u", self.queryTask.featureSet.features.count);
     
-    if(routeDictionary == Nil) {
-        routeKeys = [self loadRouteFeatures];
-    }
+    //if(routeDictionary == Nil) {
+    //    routeKeys = [self loadRouteFeatures];
+    //}
     
     //AGSGraphic *feature = [featureSet.features objectAtIndex:0];
     //NSArray *allKeys = [feature.attributes allKeys];
