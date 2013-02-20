@@ -45,8 +45,8 @@
 		D8C8EB4616BF1E6000AC7603 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB4516BF1E6000AC7603 /* background.png */; };
 		D8C8EB5116BF2AAB00AC7603 /* Zoom Out.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB5016BF2AAB00AC7603 /* Zoom Out.png */; };
 		D8C8EB5416BF2C7F00AC7603 /* layers.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB5316BF2C7F00AC7603 /* layers.png */; };
-		D8C8EB5816BF2DD500AC7603 /* back.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D8C8EB5716BF2DD500AC7603 /* back.jpeg */; };
 		ED92D2C716D4A23F0066C347 /* schedule.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92D2C616D4A23F0066C347 /* schedule.png */; };
+		ED92D2CC16D4A7B70066C347 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92D2CB16D4A7B70066C347 /* back.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,8 +115,8 @@
 		D8C8EB4516BF1E6000AC7603 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		D8C8EB5016BF2AAB00AC7603 /* Zoom Out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Zoom Out.png"; sourceTree = "<group>"; };
 		D8C8EB5316BF2C7F00AC7603 /* layers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layers.png; sourceTree = "<group>"; };
-		D8C8EB5716BF2DD500AC7603 /* back.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = back.jpeg; sourceTree = "<group>"; };
 		ED92D2C616D4A23F0066C347 /* schedule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule.png; sourceTree = "<group>"; };
+		ED92D2CB16D4A7B70066C347 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,8 +271,8 @@
 		D8C8EB4416BF1E5F00AC7603 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				ED92D2CB16D4A7B70066C347 /* back.png */,
 				ED92D2C616D4A23F0066C347 /* schedule.png */,
-				D8C8EB5716BF2DD500AC7603 /* back.jpeg */,
 				D8C8EB5316BF2C7F00AC7603 /* layers.png */,
 				D8C8EB5016BF2AAB00AC7603 /* Zoom Out.png */,
 				D8C8EB4516BF1E6000AC7603 /* background.png */,
@@ -361,8 +361,8 @@
 				D8C8EB4616BF1E6000AC7603 /* background.png in Resources */,
 				D8C8EB5116BF2AAB00AC7603 /* Zoom Out.png in Resources */,
 				D8C8EB5416BF2C7F00AC7603 /* layers.png in Resources */,
-				D8C8EB5816BF2DD500AC7603 /* back.jpeg in Resources */,
 				ED92D2C716D4A23F0066C347 /* schedule.png in Resources */,
+				ED92D2CC16D4A7B70066C347 /* back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
