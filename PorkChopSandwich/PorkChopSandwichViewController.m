@@ -8,7 +8,7 @@
 
 #import "PorkChopSandwichViewController.h"
 #import "PorkChopSandwichAppDelegate.h"
-#import "FeatureGraphNode.h"
+
 #import "QueryTask.h"
 
 #define ACTIVE_PLATFORMS_KEY @"Platforms - Active - Platforms_-_Active"
