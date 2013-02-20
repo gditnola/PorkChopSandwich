@@ -20,7 +20,7 @@
 #define BLOCKS_KEY @"Blocks"
 #define ROUTE_KEY @"Route"
 #define STOPS_KEY @"Stops"
-#define RADAR_KEY @"RIDGERadar"
+#define RADAR_KEY @"RIDGE Precipitation Radar"//@"RIDGERadar"
 
 
 @interface PorkChopSandwichViewController ()
@@ -262,7 +262,8 @@
 
 -(void)loadWebMap {
     NSLog(@"PorkChopSandwichViewController.loadWebMap()");
-    self.webMap = [AGSWebMap webMapWithItemId:@"21aef546308844d0b3bfd71782842772" credential:nil];
+    self.webMap = [AGSWebMap webMapWithItemId:@"95d5176250d048da93a205277b790572" credential:nil];
+    //old key 21aef546308844d0b3bfd71782842772
     self.webMap.delegate = self;
     [self.webMap openIntoMapView:self.mapView];
 }
