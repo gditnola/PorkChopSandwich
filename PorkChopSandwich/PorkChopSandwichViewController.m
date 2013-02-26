@@ -232,7 +232,9 @@
     [self.mapView zoomToEnvelope:initialEnvelope animated:true];}
 
 - (IBAction)showSchedule:(UIButton *)sender {
-    [self hideAll];
+    //[self hideAll];
+    [layerTableView setHidden:true];
+    [layerHideButton setHidden:true];
     
     [self initCurrentLocation];
     
@@ -241,14 +243,28 @@
         [self addRouteToMap];
     }
     
-    [routeTableView setHidden:false];
-    [scheduleHideButton setHidden:false];
+    if(routeTableView.isHidden) {
+        [routeTableView setHidden:false];
+        [scheduleHideButton setHidden:false];
+    }
+    else {
+        [routeTableView setHidden:true];
+        [scheduleHideButton setHidden:true];
+    }
 }
 
 - (IBAction)showLayers:(UIButton *)sender {
-    [self hideAll];
-    [layerTableView setHidden:false];
-    [layerHideButton setHidden:false];
+    //[self hideAll];
+    [routeTableView setHidden:true];
+    [scheduleHideButton setHidden:true];
+    if(layerTableView.isHidden) {
+        [layerTableView setHidden:false];
+        [layerHideButton setHidden:false];
+    }
+    else {
+        [layerTableView setHidden:true];
+        [layerHideButton setHidden:true];
+    }
 }
 
 -(void)hideAll {
@@ -596,7 +612,7 @@
 titleForHeaderInSection:(NSInteger)section
 {
     //return [self.route objectAtIndex:section];
-    return @"Scheduled Inspections";
+    return @"Inspections";
 }
 
 - (NSInteger)tableView:(UITableView *)table
@@ -633,6 +649,7 @@ titleForHeaderInSection:(NSInteger)section
     NSUInteger row = [indexPath row];
     //grouped
     //cell.textLabel.text = [listData objectAtIndex:row];
+    cell.textLabel.font = [UIFont fontWithName:@"Gurmukhi MN" size:13.0];
     cell.textLabel.text = [self.route objectAtIndex:row];
     
     return cell;
