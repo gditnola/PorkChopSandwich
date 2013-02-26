@@ -52,6 +52,8 @@
     [self startGps];
     self.mapView.touchDelegate = self;
     self.mapView.callout.hidden = YES;
+    self.mapView.layer.borderWidth = 2;
+    self.mapView.layer.borderColor = [[UIColor blackColor] CGColor];
 
     
     [self initRouteFeatures];
