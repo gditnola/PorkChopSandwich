@@ -129,6 +129,12 @@
 		D8D56EB516DC869A002EDFA9 /* ocen app icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EB416DC869A002EDFA9 /* ocen app icon.png */; };
 		D8D56EB716DC8701002EDFA9 /* ocen app retina icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EB616DC8701002EDFA9 /* ocen app retina icon.png */; };
 		D8D56EB916DC8708002EDFA9 /* ocen app retina icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EB816DC8708002EDFA9 /* ocen app retina icon.png */; };
+		D8D56EBF16E97ACF002EDFA9 /* BSEE_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EBA16E97ACF002EDFA9 /* BSEE_1.png */; };
+		D8D56EC016E97ACF002EDFA9 /* BSEE_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EBB16E97ACF002EDFA9 /* BSEE_2.png */; };
+		D8D56EC116E97ACF002EDFA9 /* BSEE_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EBC16E97ACF002EDFA9 /* BSEE_3.png */; };
+		D8D56EC216E97ACF002EDFA9 /* GDlogoblue.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EBD16E97ACF002EDFA9 /* GDlogoblue.png */; };
+		D8D56EC316E97ACF002EDFA9 /* GDlogowhite.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EBE16E97ACF002EDFA9 /* GDlogowhite.png */; };
+		D8D56EC516E97BB9002EDFA9 /* Navy-Blue-Spectrum-Wallpaper-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EC416E97BB9002EDFA9 /* Navy-Blue-Spectrum-Wallpaper-1.jpg */; };
 		ED92D2C716D4A23F0066C347 /* schedule.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92D2C616D4A23F0066C347 /* schedule.png */; };
 		ED92D2CC16D4A7B70066C347 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92D2CB16D4A7B70066C347 /* back.png */; };
 /* End PBXBuildFile section */
@@ -283,6 +289,12 @@
 		D8D56EB416DC869A002EDFA9 /* ocen app icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ocen app icon.png"; sourceTree = "<group>"; };
 		D8D56EB616DC8701002EDFA9 /* ocen app retina icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ocen app retina icon.png"; sourceTree = "<group>"; };
 		D8D56EB816DC8708002EDFA9 /* ocen app retina icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ocen app retina icon.png"; sourceTree = "<group>"; };
+		D8D56EBA16E97ACF002EDFA9 /* BSEE_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BSEE_1.png; sourceTree = "<group>"; };
+		D8D56EBB16E97ACF002EDFA9 /* BSEE_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BSEE_2.png; sourceTree = "<group>"; };
+		D8D56EBC16E97ACF002EDFA9 /* BSEE_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BSEE_3.png; sourceTree = "<group>"; };
+		D8D56EBD16E97ACF002EDFA9 /* GDlogoblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GDlogoblue.png; sourceTree = "<group>"; };
+		D8D56EBE16E97ACF002EDFA9 /* GDlogowhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GDlogowhite.png; sourceTree = "<group>"; };
+		D8D56EC416E97BB9002EDFA9 /* Navy-Blue-Spectrum-Wallpaper-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Navy-Blue-Spectrum-Wallpaper-1.jpg"; sourceTree = "<group>"; };
 		ED92D2C616D4A23F0066C347 /* schedule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule.png; sourceTree = "<group>"; };
 		ED92D2CB16D4A7B70066C347 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -441,6 +453,11 @@
 		D8C8EB4416BF1E5F00AC7603 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D8D56EBA16E97ACF002EDFA9 /* BSEE_1.png */,
+				D8D56EBB16E97ACF002EDFA9 /* BSEE_2.png */,
+				D8D56EBC16E97ACF002EDFA9 /* BSEE_3.png */,
+				D8D56EBD16E97ACF002EDFA9 /* GDlogoblue.png */,
+				D8D56EBE16E97ACF002EDFA9 /* GDlogowhite.png */,
 				D8D56E0E16DC7488002EDFA9 /* backgrounds */,
 				D8D56E4C16DC7488002EDFA9 /* created */,
 				D8D56E4D16DC7488002EDFA9 /* icons */,
@@ -457,6 +474,7 @@
 		D8D56E0E16DC7488002EDFA9 /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				D8D56EC416E97BB9002EDFA9 /* Navy-Blue-Spectrum-Wallpaper-1.jpg */,
 				D8D56EB616DC8701002EDFA9 /* ocen app retina icon.png */,
 				D8D56EB216DC8692002EDFA9 /* ocen app icon.png */,
 				D8D56E0F16DC7488002EDFA9 /* background copy.png */,
@@ -723,6 +741,12 @@
 				D8D56EB516DC869A002EDFA9 /* ocen app icon.png in Resources */,
 				D8D56EB716DC8701002EDFA9 /* ocen app retina icon.png in Resources */,
 				D8D56EB916DC8708002EDFA9 /* ocen app retina icon.png in Resources */,
+				D8D56EBF16E97ACF002EDFA9 /* BSEE_1.png in Resources */,
+				D8D56EC016E97ACF002EDFA9 /* BSEE_2.png in Resources */,
+				D8D56EC116E97ACF002EDFA9 /* BSEE_3.png in Resources */,
+				D8D56EC216E97ACF002EDFA9 /* GDlogoblue.png in Resources */,
+				D8D56EC316E97ACF002EDFA9 /* GDlogowhite.png in Resources */,
+				D8D56EC516E97BB9002EDFA9 /* Navy-Blue-Spectrum-Wallpaper-1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

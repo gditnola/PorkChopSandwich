@@ -21,6 +21,7 @@
 #define ROUTE_KEY @"Route"
 #define STOPS_KEY @"Stops"
 #define RADAR_KEY @"RIDGE Precipitation Radar"//@"RIDGERadar"
+#define SALE_222_KEY @"Bids222"
 
 
 @interface PorkChopSandwichViewController ()
@@ -99,6 +100,7 @@
 - (IBAction)toggleLayer:(UISwitch *)sender {
     //this is pretty stupid of the sdk. doesn't look you can assign a name or id to a uiswitch
     //instead you have to 'tag' it with an int
+    NSLog(@"sender.tag=%u",sender.tag);
     if(sender.tag==0) {
         if([sender isOn]) {
             AGSLayer *layer = [allLayers objectForKey:ACTIVE_PLATFORMS_KEY];
@@ -183,6 +185,18 @@
             [self.mapView removeMapLayerWithName:RADAR_KEY];
         }
     }
+    else if(sender.tag==9) {
+        NSLog(@"sender.tag==9");
+        if([sender isOn]) {
+            AGSLayer *layer = [allLayers objectForKey:SALE_222_KEY];
+            [self.mapView addMapLayer:layer withName:SALE_222_KEY];
+            NSLog(@"adding bids layer");
+        }
+        else {
+            [self.mapView removeMapLayerWithName:SALE_222_KEY];
+            NSLog(@"removing bids layer");
+        }
+    }
 }
 
 -(void) loadLayers {
@@ -222,6 +236,10 @@
         else if([layer.name isEqualToString:BLOCKS_KEY]) {
             [allLayers setObject:layer forKey:BLOCKS_KEY];
         }
+        else if([layer.name isEqualToString:SALE_222_KEY]) {
+            [allLayers setObject:layer forKey:SALE_222_KEY];
+            NSLog(@"added bids layer  %@", layer.name);
+        }
         
     }
 }
@@ -231,7 +249,10 @@
 }
 
 - (IBAction)zoomOut:(UIButton *)sender {
-    [self.mapView zoomToEnvelope:initialEnvelope animated:true];}
+    [self.mapView zoomToEnvelope:initialEnvelope animated:true];
+    [self.mapView zoomOut:true];
+    [self.mapView zoomOut:true];
+}
 
 - (IBAction)showSchedule:(UIButton *)sender {
     //[self hideAll];
@@ -316,6 +337,8 @@
     [self addFeatureLayer:@"http://services.arcgis.com/CZNThfVV3neRiGdR/arcgis/rest/services/Active_Lease_Polygons/FeatureServer/0" withTitle:@"Active Leases"];
     
     [self addFeatureLayer:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer" withTitle:@"Topographic"];
+    
+    
 }
 
 /*
@@ -353,6 +376,9 @@
     //[self addRouteToMap];
     [self loadLayers];
     initialEnvelope = [[self.mapView visibleArea] envelope];
+    [self.mapView zoomOut:true];
+    [self.mapView zoomOut:true];
+
 }
 
 -(void)webMap:(AGSWebMap*)wm didLoadLayer:(AGSLayer*)layer{
@@ -384,7 +410,6 @@
     self.mapView.callout.detail = [NSString stringWithFormat:@"%g,%g",((AGSPoint *) projectedPoint).x,((AGSPoint *)projectedPoint).y];
                                         
     [self.mapView showCalloutAtPoint:mappoint];
-    
     
 }
 
