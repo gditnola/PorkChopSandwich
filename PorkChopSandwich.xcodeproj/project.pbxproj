@@ -135,6 +135,16 @@
 		D8D56EC216E97ACF002EDFA9 /* GDlogoblue.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EBD16E97ACF002EDFA9 /* GDlogoblue.png */; };
 		D8D56EC316E97ACF002EDFA9 /* GDlogowhite.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EBE16E97ACF002EDFA9 /* GDlogowhite.png */; };
 		D8D56EC516E97BB9002EDFA9 /* Navy-Blue-Spectrum-Wallpaper-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EC416E97BB9002EDFA9 /* Navy-Blue-Spectrum-Wallpaper-1.jpg */; };
+		D8D56ECB16F1943E002EDFA9 /* Active Platforms Symbol Transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56ECA16F1943E002EDFA9 /* Active Platforms Symbol Transparent.png */; };
+		D8D56ECE16F2D29A002EDFA9 /* Sale 222.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56ECD16F2D29A002EDFA9 /* Sale 222.png */; };
+		D8D56ED016F2D857002EDFA9 /* Proposed Platforms.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56ECF16F2D857002EDFA9 /* Proposed Platforms.png */; };
+		D8D56ED216F2DA42002EDFA9 /* Removed Platforms.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56ED116F2DA42002EDFA9 /* Removed Platforms.png */; };
+		D8D56ED416F2DB44002EDFA9 /* Pipelines.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56ED316F2DB44002EDFA9 /* Pipelines.png */; };
+		D8D56ED616F2DBFD002EDFA9 /* Active Leases.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56ED516F2DBFD002EDFA9 /* Active Leases.png */; };
+		D8D56ED816F2DD4E002EDFA9 /* Protractions.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56ED716F2DD4E002EDFA9 /* Protractions.png */; };
+		D8D56EDA16F2DE3B002EDFA9 /* Blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56ED916F2DE3B002EDFA9 /* Blocks.png */; };
+		D8D56EDC16F2E04B002EDFA9 /* Route.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EDB16F2E04B002EDFA9 /* Route.png */; };
+		D8D56EDE16F2E251002EDFA9 /* Radar.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EDD16F2E251002EDFA9 /* Radar.png */; };
 		ED92D2C716D4A23F0066C347 /* schedule.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92D2C616D4A23F0066C347 /* schedule.png */; };
 		ED92D2CC16D4A7B70066C347 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92D2CB16D4A7B70066C347 /* back.png */; };
 /* End PBXBuildFile section */
@@ -295,6 +305,16 @@
 		D8D56EBD16E97ACF002EDFA9 /* GDlogoblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GDlogoblue.png; sourceTree = "<group>"; };
 		D8D56EBE16E97ACF002EDFA9 /* GDlogowhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GDlogowhite.png; sourceTree = "<group>"; };
 		D8D56EC416E97BB9002EDFA9 /* Navy-Blue-Spectrum-Wallpaper-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Navy-Blue-Spectrum-Wallpaper-1.jpg"; sourceTree = "<group>"; };
+		D8D56ECA16F1943E002EDFA9 /* Active Platforms Symbol Transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Active Platforms Symbol Transparent.png"; sourceTree = "<group>"; };
+		D8D56ECD16F2D29A002EDFA9 /* Sale 222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sale 222.png"; sourceTree = "<group>"; };
+		D8D56ECF16F2D857002EDFA9 /* Proposed Platforms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Proposed Platforms.png"; sourceTree = "<group>"; };
+		D8D56ED116F2DA42002EDFA9 /* Removed Platforms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Removed Platforms.png"; sourceTree = "<group>"; };
+		D8D56ED316F2DB44002EDFA9 /* Pipelines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pipelines.png; sourceTree = "<group>"; };
+		D8D56ED516F2DBFD002EDFA9 /* Active Leases.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Active Leases.png"; sourceTree = "<group>"; };
+		D8D56ED716F2DD4E002EDFA9 /* Protractions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Protractions.png; sourceTree = "<group>"; };
+		D8D56ED916F2DE3B002EDFA9 /* Blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blocks.png; sourceTree = "<group>"; };
+		D8D56EDB16F2E04B002EDFA9 /* Route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Route.png; sourceTree = "<group>"; };
+		D8D56EDD16F2E251002EDFA9 /* Radar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Radar.png; sourceTree = "<group>"; };
 		ED92D2C616D4A23F0066C347 /* schedule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule.png; sourceTree = "<group>"; };
 		ED92D2CB16D4A7B70066C347 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -552,6 +572,16 @@
 		D8D56E4D16DC7488002EDFA9 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				D8D56EDD16F2E251002EDFA9 /* Radar.png */,
+				D8D56EDB16F2E04B002EDFA9 /* Route.png */,
+				D8D56ED916F2DE3B002EDFA9 /* Blocks.png */,
+				D8D56ED716F2DD4E002EDFA9 /* Protractions.png */,
+				D8D56ED516F2DBFD002EDFA9 /* Active Leases.png */,
+				D8D56ED316F2DB44002EDFA9 /* Pipelines.png */,
+				D8D56ED116F2DA42002EDFA9 /* Removed Platforms.png */,
+				D8D56ECF16F2D857002EDFA9 /* Proposed Platforms.png */,
+				D8D56ECD16F2D29A002EDFA9 /* Sale 222.png */,
+				D8D56ECA16F1943E002EDFA9 /* Active Platforms Symbol Transparent.png */,
 				D8D56E4E16DC7488002EDFA9 /* 0-1.png */,
 				D8D56E4F16DC7488002EDFA9 /* 0-10.png */,
 				D8D56E5016DC7488002EDFA9 /* 0-11.png */,
@@ -747,6 +777,16 @@
 				D8D56EC216E97ACF002EDFA9 /* GDlogoblue.png in Resources */,
 				D8D56EC316E97ACF002EDFA9 /* GDlogowhite.png in Resources */,
 				D8D56EC516E97BB9002EDFA9 /* Navy-Blue-Spectrum-Wallpaper-1.jpg in Resources */,
+				D8D56ECB16F1943E002EDFA9 /* Active Platforms Symbol Transparent.png in Resources */,
+				D8D56ECE16F2D29A002EDFA9 /* Sale 222.png in Resources */,
+				D8D56ED016F2D857002EDFA9 /* Proposed Platforms.png in Resources */,
+				D8D56ED216F2DA42002EDFA9 /* Removed Platforms.png in Resources */,
+				D8D56ED416F2DB44002EDFA9 /* Pipelines.png in Resources */,
+				D8D56ED616F2DBFD002EDFA9 /* Active Leases.png in Resources */,
+				D8D56ED816F2DD4E002EDFA9 /* Protractions.png in Resources */,
+				D8D56EDA16F2DE3B002EDFA9 /* Blocks.png in Resources */,
+				D8D56EDC16F2E04B002EDFA9 /* Route.png in Resources */,
+				D8D56EDE16F2E251002EDFA9 /* Radar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
