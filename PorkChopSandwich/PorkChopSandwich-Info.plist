@@ -14,8 +14,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>ocen app icon.png</string>
-				<string>ocen app retina icon.png</string>
+				<string>BSEE_3_72.png</string>
+				<string>BSEE_3_144.png</string>
 			</array>
 		</dict>
 	</dict>

@@ -38,7 +38,6 @@
 		D8A10DD316A3591B00E1E121 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DD216A3591B00E1E121 /* MobileCoreServices.framework */; };
 		D8A10DD516A3592900E1E121 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DD416A3592900E1E121 /* OpenGLES.framework */; };
 		D8A10DD716A3593800E1E121 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DD616A3593800E1E121 /* Security.framework */; };
-		D8A10DD916A3598600E1E121 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D8A10DD816A3598600E1E121 /* ArcGIS.bundle */; };
 		D8A10DDB16A35BA200E1E121 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A10DDA16A35BA200E1E121 /* libstdc++.dylib */; };
 		D8A10DF516AE054600E1E121 /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10DF416AE054600E1E121 /* RouteViewController.m */; };
 		D8A10DF916AE30EC00E1E121 /* QueryTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D8A10DF816AE30EC00E1E121 /* QueryTask.m */; };
@@ -157,6 +156,9 @@
 		D8D56EF916F51235002EDFA9 /* BSEE_2_144.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EEF16F51235002EDFA9 /* BSEE_2_144.png */; };
 		D8D56EFA16F51235002EDFA9 /* BSEE_3_72.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EF016F51235002EDFA9 /* BSEE_3_72.png */; };
 		D8D56EFB16F51235002EDFA9 /* BSEE_3_144.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56EF116F51235002EDFA9 /* BSEE_3_144.png */; };
+		D8D56F1E16F72DB5002EDFA9 /* BSEE_3_72.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56F1D16F72DB5002EDFA9 /* BSEE_3_72.png */; };
+		D8D56F2116F72DBE002EDFA9 /* BSEE_3_144.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56F2016F72DBE002EDFA9 /* BSEE_3_144.png */; };
+		D8D56F2316F72DEC002EDFA9 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D8D56F2216F72DEC002EDFA9 /* ArcGIS.bundle */; };
 		ED92D2C716D4A23F0066C347 /* schedule.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92D2C616D4A23F0066C347 /* schedule.png */; };
 		ED92D2CC16D4A7B70066C347 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92D2CB16D4A7B70066C347 /* back.png */; };
 /* End PBXBuildFile section */
@@ -218,7 +220,6 @@
 		D8A10DD216A3591B00E1E121 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D8A10DD416A3592900E1E121 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		D8A10DD616A3593800E1E121 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		D8A10DD816A3598600E1E121 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../Library/SDKs/ArcGIS/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
 		D8A10DDA16A35BA200E1E121 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		D8A10DF316AE054600E1E121 /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
 		D8A10DF416AE054600E1E121 /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
@@ -339,6 +340,9 @@
 		D8D56EEF16F51235002EDFA9 /* BSEE_2_144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BSEE_2_144.png; sourceTree = "<group>"; };
 		D8D56EF016F51235002EDFA9 /* BSEE_3_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BSEE_3_72.png; sourceTree = "<group>"; };
 		D8D56EF116F51235002EDFA9 /* BSEE_3_144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BSEE_3_144.png; sourceTree = "<group>"; };
+		D8D56F1D16F72DB5002EDFA9 /* BSEE_3_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BSEE_3_72.png; sourceTree = "<group>"; };
+		D8D56F2016F72DBE002EDFA9 /* BSEE_3_144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BSEE_3_144.png; sourceTree = "<group>"; };
+		D8D56F2216F72DEC002EDFA9 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../../Library/SDKs/ArcGIS/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
 		ED92D2C616D4A23F0066C347 /* schedule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule.png; sourceTree = "<group>"; };
 		ED92D2CB16D4A7B70066C347 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -398,11 +402,13 @@
 		D8A10D7C16A3585600E1E121 = {
 			isa = PBXGroup;
 			children = (
+				D8D56F2216F72DEC002EDFA9 /* ArcGIS.bundle */,
+				D8D56F2016F72DBE002EDFA9 /* BSEE_3_144.png */,
+				D8D56F1D16F72DB5002EDFA9 /* BSEE_3_72.png */,
 				D8D56EB816DC8708002EDFA9 /* ocen app retina icon.png */,
 				D8D56EB416DC869A002EDFA9 /* ocen app icon.png */,
 				D8C8EB4416BF1E5F00AC7603 /* images */,
 				D8A10DDA16A35BA200E1E121 /* libstdc++.dylib */,
-				D8A10DD816A3598600E1E121 /* ArcGIS.bundle */,
 				D8A10DD616A3593800E1E121 /* Security.framework */,
 				D8A10DD416A3592900E1E121 /* OpenGLES.framework */,
 				D8A10DD216A3591B00E1E121 /* MobileCoreServices.framework */,
@@ -717,7 +723,6 @@
 				D8A10DA016A3585600E1E121 /* Default@2x.png in Resources */,
 				D8A10DA216A3585600E1E121 /* Default-568h@2x.png in Resources */,
 				D8A10DA816A3585600E1E121 /* PorkChopSandwichViewController.xib in Resources */,
-				D8A10DD916A3598600E1E121 /* ArcGIS.bundle in Resources */,
 				D8C8EB4616BF1E6000AC7603 /* background.png in Resources */,
 				D8C8EB5116BF2AAB00AC7603 /* Zoom Out.png in Resources */,
 				D8C8EB5416BF2C7F00AC7603 /* layers.png in Resources */,
@@ -835,6 +840,9 @@
 				D8D56EF916F51235002EDFA9 /* BSEE_2_144.png in Resources */,
 				D8D56EFA16F51235002EDFA9 /* BSEE_3_72.png in Resources */,
 				D8D56EFB16F51235002EDFA9 /* BSEE_3_144.png in Resources */,
+				D8D56F1E16F72DB5002EDFA9 /* BSEE_3_72.png in Resources */,
+				D8D56F2116F72DBE002EDFA9 /* BSEE_3_144.png in Resources */,
+				D8D56F2316F72DEC002EDFA9 /* ArcGIS.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
