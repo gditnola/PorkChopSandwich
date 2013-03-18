@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>GD Inspector</string>
+	<string>eInspector</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons</key>
@@ -14,8 +14,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>ocen app icon.png</string>
-				<string>ocen app retina icon.png</string>
+				<string>boem02-72.png</string>
+				<string>boem02-144.png</string>
 			</array>
 		</dict>
 	</dict>
