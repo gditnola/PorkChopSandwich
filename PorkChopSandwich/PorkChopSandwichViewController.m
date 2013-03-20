@@ -398,18 +398,131 @@
 }
 
 -(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint graphics:(NSDictionary *)graphics{
+    NSLog(@"didClickAtPoint()");
 
-    AGSGeometryEngine* ge = [AGSGeometryEngine defaultGeometryEngine];
+    
+    
+     AGSGeometryEngine* ge = [AGSGeometryEngine defaultGeometryEngine];
     AGSSpatialReference* sr = [AGSSpatialReference spatialReferenceWithWKID:4267];
     AGSGeometry* projectedPoint = [ge projectGeometry:mappoint toSpatialReference:sr];
     
-
-    self.mapView.callout.hidden = true;
+//John's code:
+    /*self.mapView.callout.hidden = true;
     self.mapView.callout.accessoryButtonHidden = true;
     self.mapView.callout.title = @"Point in NAD27";
     self.mapView.callout.detail = [NSString stringWithFormat:@"%g,%g",((AGSPoint *) projectedPoint).x,((AGSPoint *)projectedPoint).y];
-                                        
+     
     [self.mapView showCalloutAtPoint:mappoint];
+     */
+    
+    //print out the location of the point click for debugging
+    NSLog(@"point clicked at (%f, %f)", ((AGSPoint *)projectedPoint).x,
+          ((AGSPoint *)projectedPoint).y);
+    
+    //get graphic of feature that was clicked. you could probably do this with a spatial query
+    //but then it might get difficult to figure out which layer was clicked...
+    //instead lets try to do this with the identify tasking built into the system
+    
+    
+    //should be able to do something like below to show the popup. Will have to somehow
+    //get the feature you want to display first into the graphic variable.  May have to
+    //do a spatial query?
+    /*AGSGraphic* graphic = ...;
+    AGSPopupsContainerViewController* popupVC = [[AGSPopupsContainerViewController alloc] initWithWebMap:webMap forFeature:feature  usingNavigationControllerStack:NO];
+     */
+    
+    //you could also programatically display popups with something like the code below
+    /*
+     NSMutableArray* popups = [[[NSMutableArray alloc] init] autorelease];
+     //The popup definition
+     AGSPopupInfo* popupInfo = ...;
+     
+     //The feature to be displayed in a popup
+     AGSGraphic* graphic = ...;
+     
+     //Associate the popup definition with the feature to get a popup
+     AGSPopup* popup = [AGSPopup popupWithGraphic:graphic popupInfo:popupInfo];
+     [popups addObject:popup];
+     
+     ...
+     //Pass the list of popups to the view controller
+     AGSPopupsContainerViewController* popupVC = [[AGSPopupsContainerViewController alloc] initWithPopups:popups usingNavigationControllerStack:false];
+     */
+    
+    //you can also define your popups in the webmap, then display them for a feature
+    //with the below code.
+    /*
+     AGSGraphic* graphic = ...; //graphic in a feature layer for which we want popup definition
+     AGSPopupInfo* popupInfo =  [self.webmap popupInfoForFeatureLayer:graphic.layer];
+     */
+    
+    //if you don't know which layer a feature belongs to, you can manually retrieve
+    //the layers popup from the webmap with code like below
+    /*
+     NSURL* serviceURL = ...; //the service that the graphic belongs to
+     int layerId = ...; //sub-layer in the service containing the popup definition
+     AGSPopupInfo* popupInfo =  [self.webmap popupInfoForMapServiceLayerWithURL:serviceURL sublayerId:layerId];/
+    
+     //easy way to display the popup view controller. you can adjust things like the modality
+     //and other options for how it displays on the screen
+     /*
+     popupVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+     popupVC.modalPresentationStyle = UIModalPresentationFormSheet;
+     [self presentModalViewController:popupVC animated:YES];
+     */
+    
+    //here's an example of how to show custom popups. you can also show multiple popups,
+    //but you would do it differently.  if you need an example of this, there is code on
+    //the website.
+    /*
+     //showing popups in a custom callout
+     popupVC.view.frame = CGRectMake(0,0,192,288);
+     popupVC.actionSheetContainerView = self.view;
+     popupVC.modalPresenter = self;
+     self.mapView.callout.customView = popupVC.view;
+     [self.mapView showCalloutAtPoint:location];
+     
+     
+     //showing popups in a popover
+     UIPopoverController* popover = [[UIPopoverController alloc]initWithContentViewController:popupVC.view];
+     [popover setPopoverContentSize:CGSizeMake(320, 480)];
+     [popover presentPopoverFromRect:location inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+     */
+    
+    //to handle user interaction you might need to make this view controller extend
+    //AGSPopupsContainerDelegate. this will allow you to handle user interaction.
+    //the delegate will allow you to do more complex things like editing the feature,
+    //including attributes, attachments, the geometry
+    /*
+     //in the .h file
+     @interface MyViewController : UIViewController <AGSPopupsContainerDelegate> {...
+     
+     //set an instance of your class as the delegate, somewhere in the .m file
+     popupVC.delegate = self;
+     
+     //implement methods defined in the protocol in the .m file. there are more methods
+     //than what is below that you can implement
+     - (void)popupsContainerDidFinishViewingPopups:(id) popupsContainer {
+     [self dismissModalViewControllerAnimated:YES];
+     }
+     */
+    
+    //you can change the look and feel by editing the style of the popups.  some styles
+    //you can adjust include the color, paging, and editing styles
+    /*
+     AGSPopupsContainerViewController* popupVC = ...;
+     popupVC.style = AGSPopupsContainerStyleCustomColor;
+     popupVC.styleColor = [UIColor lightGrayColor];
+     */
+    
+    //setting the custom action view controller to do something when the popup button
+    //is clicked
+    /*
+     Custom Action
+     You can replace the right bar button  in the top toolbar of the popup view by setting the actionButton property on AGSPopupsContainerViewController. You can perform any action when the button is clicked, such as zooming into the feature being displayed in the popup, or displaying a custom action sheet with further options.
+     */
+    
+    
     
 }
 
