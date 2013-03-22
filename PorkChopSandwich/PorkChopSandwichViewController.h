@@ -10,8 +10,9 @@
 #import <ArcGIS/ArcGIS.h>
 #import "QueryTask.h"
 #import "RouteTask.h"
+#import "IdentifyTask.h"
 
-@interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate, AGSQueryTaskDelegate, AGSRouteTaskDelegate, AGSMapViewTouchDelegate, AGSMapViewCalloutDelegate>
+@interface PorkChopSandwichViewController : UIViewController <AGSWebMapDelegate, AGSQueryTaskDelegate, AGSRouteTaskDelegate, AGSMapViewTouchDelegate, AGSMapViewCalloutDelegate, AGSIdentifyTaskDelegate, AGSPopupsContainerDelegate>
 {
     IBOutlet UITableView* routeTableView;
     IBOutlet UIView* layerTableView;
@@ -27,6 +28,7 @@
 @property (nonatomic,retain) NSMutableArray *route;
 @property (nonatomic,retain) QueryTask *queryTask;
 @property (nonatomic,retain) RouteTask *routeTask;
+@property (nonatomic,retain) IdentifyTask *identifyTask;
 @property (nonatomic,retain) AGSGraphic *currentLocation;
 
 - (IBAction)showSchedule:(UIButton *)sender;

@@ -48,7 +48,8 @@
     [self loadWebMap];
     //[self loadMap];
     self.queryTask = [[QueryTask alloc] initWithDelegate:self];
-    self.routeTask =[[RouteTask alloc] initWithDelegate:self];
+    self.routeTask = [[RouteTask alloc] initWithDelegate:self];
+    self.identifyTask = [[IdentifyTask alloc] initWithDelegate:self];
     //[self initCurrentLocation];
     [self startGps];
     self.mapView.touchDelegate = self;
@@ -400,9 +401,7 @@
 -(void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint graphics:(NSDictionary *)graphics{
     NSLog(@"didClickAtPoint()");
 
-    
-    
-     AGSGeometryEngine* ge = [AGSGeometryEngine defaultGeometryEngine];
+    AGSGeometryEngine* ge = [AGSGeometryEngine defaultGeometryEngine];
     AGSSpatialReference* sr = [AGSSpatialReference spatialReferenceWithWKID:4267];
     AGSGeometry* projectedPoint = [ge projectGeometry:mappoint toSpatialReference:sr];
     
@@ -422,13 +421,22 @@
     //get graphic of feature that was clicked. you could probably do this with a spatial query
     //but then it might get difficult to figure out which layer was clicked...
     //instead lets try to do this with the identify tasking built into the system
+    //AGSGraphic *graphic =[[self.identifyTask] idenitfyFeatureAtPoint:mappoint];
+    //AGSGraphic *graphic = [self.identifyTask getSaleAtPoint:mappoint];
+    //identify task doesn't look like its gonna work because you don't have a map service!!
+    //trying spatial query instead
+    [self.queryTask getSaleAtPoint:mappoint];
     
     
+}
+
+-(void)displayPopup:(AGSGraphic *)graphic {
+    NSLog(@"displayPopup()");
     //should be able to do something like below to show the popup. Will have to somehow
     //get the feature you want to display first into the graphic variable.  May have to
     //do a spatial query?
     /*AGSGraphic* graphic = ...;
-    AGSPopupsContainerViewController* popupVC = [[AGSPopupsContainerViewController alloc] initWithWebMap:webMap forFeature:feature  usingNavigationControllerStack:NO];
+     AGSPopupsContainerViewController* popupVC = [[AGSPopupsContainerViewController alloc] initWithWebMap:webMap forFeature:feature  usingNavigationControllerStack:NO];
      */
     
     //you could also programatically display popups with something like the code below
@@ -462,7 +470,7 @@
      NSURL* serviceURL = ...; //the service that the graphic belongs to
      int layerId = ...; //sub-layer in the service containing the popup definition
      AGSPopupInfo* popupInfo =  [self.webmap popupInfoForMapServiceLayerWithURL:serviceURL sublayerId:layerId];/
-    
+     
      //easy way to display the popup view controller. you can adjust things like the modality
      //and other options for how it displays on the screen
      /*
@@ -522,8 +530,26 @@
      You can replace the right bar button  in the top toolbar of the popup view by setting the actionButton property on AGSPopupsContainerViewController. You can perform any action when the button is clicked, such as zooming into the feature being displayed in the popup, or displaying a custom action sheet with further options.
      */
     
+    //AGSPopupsContainerViewController* popupVC = [[AGSPopupsContainerViewController alloc] initWithWebMap:self.webMap forFeature:graphic  usingNavigationControllerStack:NO];
+    //AGSPopupInfo* popupInfo =  [self.webMap popupInfoForFeatureLayer:graphic.layer];
+    //AGSPopupInfo* popupInfo =  [self.webMap popupInfoForMapServiceLayerWithURL:@"http://services1.arcgis.com/uZVAzDiCT5BL7sFE/arcgis/rest/services/Bids222/FeatureServer/0"sublayerId:0];
+    AGSPopupInfo *popupInfo = [AGSPopupInfo popupInfoForGraphic:graphic];
+    popupInfo.title = @"Sale 222";
+    //Associate the popup definition with the feature to get a popup
     
+    AGSPopup* popup = [AGSPopup popupWithGraphic:graphic popupInfo:popupInfo];
+    //[popups addObject:popup];
+    NSArray *popups = [[NSArray alloc] initWithObjects:popup, nil];
     
+    //Pass the list of popups to the view controller
+    AGSPopupsContainerViewController* popupVC = [[AGSPopupsContainerViewController alloc] initWithPopups:popups usingNavigationControllerStack:false];
+    
+    popupVC.delegate = self;
+    
+    popupVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    popupVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentModalViewController:popupVC animated:YES];
+    NSLog(@"finished displayPopup()");
 }
 
 
@@ -867,7 +893,19 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //NSLog(@"strNumber: %@", strNumber);
     //NSLog(@"strName: %@", strName);
     
-    NSLog(@"QueryTask.queryTask() finsihed");
+    //if feature set contains sales (for now in prototype), then display popup
+    if(self.queryTask.featureSet.features.count>0) {
+        //get the first feature
+        AGSGraphic *graphic = self.queryTask.featureSet.features[0];
+        NSLog(@"query returned features for layer = %@", graphic.layer.name);
+        NSLog(@"description of the returned graphic = %@",graphic.description);
+        if([graphic.attributes objectForKey:@"SALE_NUMBE"] != nil) {//then is sale layer
+            //display popup
+            [self displayPopup:graphic];
+        }
+    }
+    
+    NSLog(@"QueryTask.queryTask() finished");
 }
 
 //if there's an error with the query display it to the user
@@ -927,6 +965,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 - (void) routeTask:(AGSRouteTask*)routeTask operation:(NSOperation*)op didFailSolveWithError:(NSError*) error{
     NSLog(@"Route Tasking: %@",error);
+}
+
+- (void)popupsContainerDidFinishViewingPopups:(id) popupsContainer {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 

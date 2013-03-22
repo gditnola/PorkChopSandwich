@@ -115,5 +115,22 @@
     [self.queryTask executeWithQuery:query];
 }
 
+//perform spatial query for sales where the specified point intersects
+-(void)getSaleAtPoint:(AGSPoint *)mapPoint {
+    NSLog(@"QueryTask.getSaleAtPoint()");
+    NSURL* url = [NSURL URLWithString:saleURL];
+    self.queryTask = [[AGSQueryTask alloc] initWithURL: url];
+    
+    AGSQuery* query = [AGSQuery query];
+    query.returnGeometry = true;
+    query.outFields = [NSArray arrayWithObjects:@"*", nil];
+    query.geometry = mapPoint;
+    query.spatialRelationship =  AGSSpatialRelationshipIntersects;
+    
+    self.queryTask.delegate = delegate;
+    
+    [self.queryTask executeWithQuery:query];
+    NSLog(@"finished executing QueryTask.getSaleAtPoint()");
+}
 
 @end

@@ -159,6 +159,7 @@
 		D8D56F1E16F72DB5002EDFA9 /* BSEE_3_72.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56F1D16F72DB5002EDFA9 /* BSEE_3_72.png */; };
 		D8D56F2116F72DBE002EDFA9 /* BSEE_3_144.png in Resources */ = {isa = PBXBuildFile; fileRef = D8D56F2016F72DBE002EDFA9 /* BSEE_3_144.png */; };
 		D8D56F2316F72DEC002EDFA9 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D8D56F2216F72DEC002EDFA9 /* ArcGIS.bundle */; };
+		D8D56F2A16F96E73002EDFA9 /* IdentifyTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D56F2916F96E73002EDFA9 /* IdentifyTask.m */; };
 		ED92D2C716D4A23F0066C347 /* schedule.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92D2C616D4A23F0066C347 /* schedule.png */; };
 		ED92D2CC16D4A7B70066C347 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = ED92D2CB16D4A7B70066C347 /* back.png */; };
 /* End PBXBuildFile section */
@@ -343,6 +344,8 @@
 		D8D56F1D16F72DB5002EDFA9 /* BSEE_3_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BSEE_3_72.png; sourceTree = "<group>"; };
 		D8D56F2016F72DBE002EDFA9 /* BSEE_3_144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BSEE_3_144.png; sourceTree = "<group>"; };
 		D8D56F2216F72DEC002EDFA9 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../../Library/SDKs/ArcGIS/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
+		D8D56F2816F96E73002EDFA9 /* IdentifyTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdentifyTask.h; sourceTree = "<group>"; };
+		D8D56F2916F96E73002EDFA9 /* IdentifyTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdentifyTask.m; sourceTree = "<group>"; };
 		ED92D2C616D4A23F0066C347 /* schedule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule.png; sourceTree = "<group>"; };
 		ED92D2CB16D4A7B70066C347 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -461,6 +464,8 @@
 				D8A10DF816AE30EC00E1E121 /* QueryTask.m */,
 				D812725D16B47381006D1351 /* RouteTask.h */,
 				D812725E16B47381006D1351 /* RouteTask.m */,
+				D8D56F2816F96E73002EDFA9 /* IdentifyTask.h */,
+				D8D56F2916F96E73002EDFA9 /* IdentifyTask.m */,
 			);
 			path = PorkChopSandwich;
 			sourceTree = "<group>";
@@ -888,6 +893,7 @@
 				D812727616B5A037006D1351 /* FeatureGraphNode.m in Sources */,
 				D812727716B5A037006D1351 /* FeatureGraphRoute.m in Sources */,
 				D812727816B5A037006D1351 /* FeatureGraphRouteStep.m in Sources */,
+				D8D56F2A16F96E73002EDFA9 /* IdentifyTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

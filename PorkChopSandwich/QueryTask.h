@@ -12,7 +12,8 @@
 @class PorkChopSandwichViewController; //have to use this forward declaration instead of an import to get objective c to compile the circular reference
 
 #define activePlatformsLayerURL @"http://services1.arcgis.com/uZVAzDiCT5BL7sFE/arcgis/rest/services/Platforms_-_Active/FeatureServer/0"
-#define protractionsURL @"http://http://services1.arcgis.com/uZVAzDiCT5BL7sFE/arcgis/rest/services/Protractions/FeatureServer/0"
+#define protractionsURL @"http://services1.arcgis.com/uZVAzDiCT5BL7sFE/arcgis/rest/services/Protractions/FeatureServer/0"
+#define saleURL @"http://services1.arcgis.com/uZVAzDiCT5BL7sFE/arcgis/rest/services/Bids222/FeatureServer/0"
 
 @interface QueryTask : NSObject {//<AGSQueryTaskDelegate>
     PorkChopSandwichViewController *delegate;
@@ -29,5 +30,6 @@
 -(void)getActivePlatforms:(NSString *)complexId strNumber:(NSString *)strNumber strName:(NSString *)strName;
 -(void)getActivePlatforms:(NSString *)strName;
 -(NSOperation *)getActivePlatformsWhereStrNameIn:(NSString *)inClause;
+-(void)getSaleAtPoint:(AGSPoint *)mapPoint;
 
 @end
